@@ -50,9 +50,16 @@ for value in vegetableList:
     print(vegetable_name)
     print(vegetable_unit)
 
-    data = vct_col.insert_one({
-        "vegetable_name": vegetable_name,
-        "vegetable_price": vegetable_price,
-        "vegetable_unit": vegetable_unit
-    })
-
+    if vct_col.estimated_document_count() == 0:
+        data = vct_col.insert_one({
+            "vegetable_name": vegetable_name,
+            "vegetable_price": vegetable_price,
+            "vegetable_unit": vegetable_unit
+        })
+    else:
+        data = vct_col.update_one({
+            "vegetable_name": vegetable_name
+        }, {
+            "$set": {"vegetable_price": vegetable_price}
+        }
+        )
