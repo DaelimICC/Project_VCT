@@ -92,7 +92,7 @@ DATABASES = {
          },
         'NAME': 'VCT',
         'CLIENT': {
-            'host': '127.0.0.1',
+            'host': '158.247.200.77',
             'port': 27017,
             'username': 'admin',
             'password': "1234",
