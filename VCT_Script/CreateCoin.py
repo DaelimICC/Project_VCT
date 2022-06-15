@@ -24,16 +24,16 @@ for value in vegetableList:
     current_dt = now.strftime('%Y-%m-%d %H:%M:%S')
     vct_col = vct_db['VegetableAPI_vegetablecoin']
 
-    if vct_col.estimated_document_count() < 5:
-        data = vct_col.insert_one({
-            "coin_name": value,
-            "coin_price": coin,
-            "coin_date": current_dt
-        })
-    else:
-        data = vct_col.update_one({
-            "coin_name": value
-        }, {
-            "$set": {"coin_price": coin}
-        }
-        )
+    # if vct_col.estimated_document_count() < 5:
+    data = vct_col.insert_one({
+        "coin_name": value,
+        "coin_price": coin,
+        "coin_date": current_dt
+    })
+    # else:
+    #     data = vct_col.update_one({
+    #         "coin_name": value
+    #     }, {
+    #         "$set": {"coin_price": coin}
+    #     }
+    #     )
