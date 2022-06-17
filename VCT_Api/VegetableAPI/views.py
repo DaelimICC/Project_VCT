@@ -8,9 +8,9 @@ class UserView(View):
     def post(self, request):
         data = json.loads(request.body)
 
-        user = User.objects.create(
-            user_Id=data["Id"],
-            user_Nick=data["Nickname"],
+        Users = User.objects.create(
+            user_Id=data["user_Id"],
+            user_Nick=data["user_Nick"],
         )
 
         return JsonResponse({"message": "SUCCESS"}, status=201)
