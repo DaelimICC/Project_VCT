@@ -7,7 +7,6 @@ from .models import User
 
 class UserView(APIView):
     def post(self, request):
-
         user_serializer = UserSerializer(data=request.data)
         if user_serializer.is_valid():
             user_serializer.save()
