@@ -52,6 +52,17 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
 ]
 
+CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'POST',
+    'PUT',
+    'OPTIONS'
+]
+
+
 ROOT_URLCONF = 'VCT_Api.urls'
 
 TEMPLATES = [
