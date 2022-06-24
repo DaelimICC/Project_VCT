@@ -20,8 +20,8 @@ class User(models.Model):
     class Meta:
         db_table = 'Users'
 
-    def __str__(self):
-        return f"{self.user_Id, self.user_Nick}"
+    # def __str__(self):
+    #     return f"{self.user_Id, self.user_Nick}"
 
 
 class PurchaseCoin(models.Model):

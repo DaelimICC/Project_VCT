@@ -62,7 +62,6 @@ CORS_ALLOW_METHODS = [
     'OPTIONS'
 ]
 
-
 ROOT_URLCONF = 'VCT_Api.urls'
 
 TEMPLATES = [

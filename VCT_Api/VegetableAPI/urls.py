@@ -3,7 +3,6 @@ from . import views
 
 app_name = 'User'
 urlpatterns =[
-    path('user', views.UserView.as_view()),
-    path('user?<str:user_id>', views.UserView.as_view())
+    path('user/','<str:user_Id>', views.UserView.as_view(), name='user_get'),
 
 ]
