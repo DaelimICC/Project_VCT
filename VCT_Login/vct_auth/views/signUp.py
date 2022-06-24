@@ -13,4 +13,7 @@ class SignUpView(APIView):
             nick=data['nick'],
             phone=data['phone']
         )
-        return JsonResponse(data)
+        res = {
+            'success': True
+        }
+        return JsonResponse(res)

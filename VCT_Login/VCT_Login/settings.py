@@ -14,7 +14,6 @@ from pathlib import Path
 import environ
 import os
 
-
 env = environ.Env(
     DEBUG=(bool, False)
 )
@@ -162,3 +161,6 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'vct_auth.User'
+
+# LOGIN_URL=''
+# LOGOUT_URL=''
