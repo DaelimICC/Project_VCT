@@ -20,9 +20,6 @@ class User(models.Model):
     class Meta:
         db_table = 'Users'
 
-    # def __str__(self):
-    #     return f"{self.user_Id, self.user_Nick}"
-
 
 class PurchaseCoin(models.Model):
     pc_user = models.ForeignKey("User", related_name='Purchase', on_delete=models.CASCADE, db_column='pc_user')
