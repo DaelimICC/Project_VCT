@@ -1,19 +1,24 @@
 from django.http import JsonResponse
+from rest_framework import status
 from rest_framework.views import APIView
-from vct_auth.models import User
-from rest_framework.parsers import JSONParser
+from vct_auth.serializer import SignupUserSerializer
 
 
 class SignUpView(APIView):
+
     def post(self, request):
-        data = JSONParser().parse(request)
-        User.objects.create_user(
-            email=data['email'],
-            password=data['password'],
-            nick=data['nick'],
-            phone=data['phone']
-        )
-        res = {
-            'success': True
-        }
-        return JsonResponse(res)
+        serializer = SignupUserSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+
+            res = {
+                'success': True
+            }
+            return JsonResponse(res, status=status.HTTP_201_CREATED)
+
+        else:
+            res = {
+                'success': False,
+                'err': serializer.errors
+            }
+            return JsonResponse(res, status=status.HTTP_400_BAD_REQUEST)

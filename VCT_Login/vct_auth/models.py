@@ -4,6 +4,15 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
 class UserManager(BaseUserManager):
     def create_user(self, email, password, nick, phone):
+        if not email:
+            raise ValueError("Email must not be empty")
+        if not password:
+            raise ValueError("Password must not be empty")
+        if not nick:
+            raise ValueError("Nick must not be empty")
+        if not phone:
+            raise ValueError("Phone must not be empty")
+
         user = self.model(
             email=self.normalize_email(email),
             nick=nick,
