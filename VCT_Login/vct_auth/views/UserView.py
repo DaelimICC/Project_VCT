@@ -4,7 +4,7 @@ from rest_framework.views import APIView
 from vct_auth.serializer import SignupUserSerializer
 
 
-class SignUpView(APIView):
+class UserView(APIView):
 
     def post(self, request):
         serializer = SignupUserSerializer(data=request.data)

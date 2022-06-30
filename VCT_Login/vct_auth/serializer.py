@@ -4,6 +4,7 @@ from rest_framework import serializers
 from rest_framework_simplejwt.tokens import RefreshToken
 
 from vct_auth.models import User
+from vct_auth.validators import valid_email, valid_password, valid_nick, valid_phone
 
 
 class LoginUserSerializer(serializers.Serializer):
@@ -57,6 +58,22 @@ class SignupUserSerializer(serializers.ModelSerializer):
             'nick',
             'phone'
         )
+
+    def validate_email(self, email):
+        valid_email(email)
+        return email
+
+    def validate_password(self, password):
+        valid_password(password)
+        return password
+
+    def validate_nick(self, nick):
+        valid_nick(nick)
+        return nick
+
+    def validate_phone(self, phone):
+        valid_phone(phone)
+        return phone
 
     def create(self, validated_data):
         user = User.objects.create_user(**validated_data)

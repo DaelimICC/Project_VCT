@@ -1,15 +1,25 @@
 from django.http import JsonResponse
 from rest_framework import status
+from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.parsers import JSONParser
 from django.contrib.auth import authenticate, login
 from rest_framework_simplejwt.tokens import RefreshToken
 
 
+
+
 class LoginView(APIView):
 
     def post(self, request):
         data = JSONParser().parse(request)
+        # if request.user.is_authenticated:
+        #     res = {
+        #         'success': False,
+        #         'err': 'Already logged in',
+        #         'user': request.user.username
+        #     }
+        #     return JsonResponse(res, status=status.HTTP_400_BAD_REQUEST)
         user = authenticate(request, username=data['email'], password=data['password'])
 
         if user is None:
