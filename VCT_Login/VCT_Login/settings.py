@@ -67,6 +67,10 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'VCT_Login.urls'
 
+# SESSIONS
+SESSION_COOKIE_AGE = 1 * 60
+SESSION_SAVE_EVERY_REQUEST = True
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
