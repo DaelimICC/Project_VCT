@@ -49,7 +49,7 @@ class LoginUserSerializer(serializers.Serializer):
     #         raise serializers.ValidationError('User DoesNotExist')
 
 
-class SignupUserSerializer(serializers.ModelSerializer):
+class SignUpUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = (
@@ -78,3 +78,25 @@ class SignupUserSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         user = User.objects.create_user(**validated_data)
         return user
+
+
+class UpdateUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = (
+            'email',
+            'nick',
+            'phone'
+        )
+
+    def validate_email(self, email):
+        valid_email(email)
+        return email
+
+    def validate_nick(self, nick):
+        valid_nick(nick)
+        return nick
+
+    def validate_phone(self, phone):
+        valid_phone(phone)
+        return phone
