@@ -1,4 +1,4 @@
-import Footer from './footer';
+import Tabbar from './Tabbar';
 import Header from './header';
 import Nav from './nav';
 
@@ -9,7 +9,7 @@ const Layout = ({ children }) => {
         <Header />
         <Nav />
         {children}
-        <Footer />
+        <Tabbar />
       </div>
     </div>
   );
