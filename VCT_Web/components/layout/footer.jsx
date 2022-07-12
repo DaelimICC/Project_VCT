@@ -8,7 +8,7 @@ import {
 
 const Footer = () => {
   return (
-    <div className="flex justify-around w-[500px] h-[65px] fixed bottom-0 z-10 border-t border-gray-400">
+    <div className="flex justify-around w-[500px] h-[65px] fixed bottom-0 z-10 border-t border-gray-400 bg-white">
       <div className="flex flex-col justify-center items-center">
         <HomeIcon className="w-5 h-5" />
         <p className="mt-[2px] text-[12px]">홈</p>
