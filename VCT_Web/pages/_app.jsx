@@ -1,5 +1,9 @@
 import '../styles/globals.css';
 import Head from 'next/head';
+import Layout from '../components/layout';
+import 'tailwindcss/tailwind.css';
+import Header from '../components/layout/header';
+
 function MyApp({ Component, pageProps }) {
   return (
     <>
@@ -7,7 +11,9 @@ function MyApp({ Component, pageProps }) {
         <title>Project VCT</title>
         <link rel="icon" href="/asset/image/vctLogo.png" />
       </Head>
-      <Component {...pageProps} />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </>
   );
 }
