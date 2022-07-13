@@ -1,34 +1,59 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h1 align="center"> 🥒 VCT 웹 클라이언트 </h1>
 
-## Getting Started
+## 🖥️ Collabrator
 
-First, run the development server:
+<table align="center">
+  <tr>
+    <td align="center"><a href="https://github.com/UBamtol"><img src="https://avatars.githubusercontent.com/u/98325285?v=4" width="100px;" alt="이미지"/><br /><sub><b>UBamtol</b></sub></a><br />🦄Front-End<br/>
+    🖼️UI/UX</td>
+    <td align="center"><a href="https://github.com/Mallang-Mallang"><img src="https://avatars.githubusercontent.com/u/70959328?v=4" width="100px;" alt=""/><br /><sub><b>Mallang-Mallang</b></sub></a><br />🦄Front-End</td>
+  </tr>
+</table>
 
-```bash
-npm run dev
-# or
-yarn dev
+## Front-end stack
+
+- react
+- next ( with React-dom )
+  <!-- - recoil -->
+- tailwindcss
+- axios
+<!-- - swr -->
+
+## Folder path
+
+```js
+./components
+    |- /common
+    |- /layout
+
+./pages
+
+./styles
+
+./public
+    |- /asset
+        |- /image
+        |- /video
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Convention
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+1. html 태그가 들어간 .js 는 .jsx 확장자로 작성
+2. 모든 components 는 React Arrow Function Component 로 작성한다.
+3. components 경우 중첩 컨포넌트의 경우 폴더 내의 index.js에 통합
+4. components 의 파일명은 UpperCamelCase로 작성 권장
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## Before Starting
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### 의존성 패키지 설치
 
-## Learn More
+```
+yarn
+```
 
-To learn more about Next.js, take a look at the following resources:
+### 개발 서버 시작
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```
+yarn dev
+```
