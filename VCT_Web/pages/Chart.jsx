@@ -1,5 +1,12 @@
+import Nav from '../components/layout/nav';
+
 const Chart = () => {
-  return <>차트페이지</>;
+  return (
+    <>
+      <Nav title="차트" />
+      차트페이지
+    </>
+  );
 };
 
 export default Chart;

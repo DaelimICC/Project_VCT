@@ -1,5 +1,12 @@
+import Nav from '../components/layout/nav';
+
 const Order = () => {
-  return <>주문페이지</>;
+  return (
+    <>
+      <Nav title="주문" />
+      주문
+    </>
+  );
 };
 
 export default Order;
