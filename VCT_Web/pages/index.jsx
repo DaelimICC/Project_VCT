@@ -5,13 +5,14 @@ import Nav from '../components/layout/nav';
 import styles from '../styles/Home.module.css';
 
 export default function Home() {
-  const titleList = ['급상승', '급하락', '거래량'];
+  const titleList = [
+    { id: 0, title: '급상승', type: 'rise' },
+    { id: 1, title: '급하락', type: 'fall' },
+    { id: 2, title: '거래량', type: 'voulme' },
+  ];
   return (
     <>
-      {titleList.map((v, i) => {
-        console.log(v);
-        <Nav title={v} key={i} />;
-      })}
+      <Nav title={titleList} defaultType="rise" />
       <div className="">메인페이지</div>
     </>
   );
