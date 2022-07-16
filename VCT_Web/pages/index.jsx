@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Header from '../components/layout/header';
 import Nav from '../components/layout/nav';
+import VegeIssue from '../components/vegeIssue';
 import styles from '../styles/Home.module.css';
 
 export default function Home() {
@@ -13,7 +14,10 @@ export default function Home() {
   return (
     <>
       <Nav title={titleList} defaultType="rise" />
-      <div className="">메인페이지</div>
+      <div className="h-[380px] border-b border-gray-500 bg-white mb-[20px]">
+        메인페이지
+      </div>
+      <VegeIssue />
     </>
   );
 }
