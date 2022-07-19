@@ -12,12 +12,12 @@ export default function Home() {
     { id: 2, title: '거래량', type: 'voulme' },
   ];
   return (
-    <>
+    <div className="pb-[65px]">
       <Nav title={titleList} defaultType="rise" />
       <div className="h-[380px] border-b border-gray-500 bg-white mb-[20px]">
         메인페이지
       </div>
       <VegeIssue />
-    </>
+    </div>
   );
 }

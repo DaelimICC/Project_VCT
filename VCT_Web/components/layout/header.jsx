@@ -4,7 +4,7 @@ import Link from 'next/link';
 const Header = () => {
   return (
     <>
-      <div className="flex w-[500px] h-[60px] px-[20px] justify-between fixed top-0 bg-white">
+      <div className="flex w-[500px] h-[60px] px-[20px] justify-between fixed top-0 bg-white z-10">
         <Link href="/">
           <h1 className="my-auto text-[30px] hover:cursor-pointer">VCT</h1>
         </Link>
