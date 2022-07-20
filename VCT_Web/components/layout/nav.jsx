@@ -9,14 +9,14 @@ const Nav = ({ title, defaultType }) => {
       } z-10`}
     >
       {typeof title === 'string' ? (
-        <p className="flex items-center text-[15px] h-full border-b-2 border-orange-500">
+        <h3 className="flex items-center h-full border-b-2 border-orange-500">
           {title}
-        </p>
+        </h3>
       ) : (
         title.map((v, i) => {
           return (
-            <p
-              className={`flex items-center text-[15px] mr-[20px] h-full ${
+            <h3
+              className={`flex items-center mr-[20px] h-full ${
                 v.type === currentType && 'border-b-2 border-orange-500'
               }`}
               key={i}
@@ -26,11 +26,10 @@ const Nav = ({ title, defaultType }) => {
               }}
             >
               {v.title}
-            </p>
+            </h3>
           );
         })
       )}
-      {}
     </div>
   );
 };

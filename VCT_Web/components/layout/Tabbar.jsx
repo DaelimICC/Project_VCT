@@ -29,13 +29,13 @@ const Footer = () => {
                   router.pathname === `${v.route}` ? 'text-orange-500' : null
                 }`}
               />
-              <p
-                className={`mt-[2px] text-[12px] ${
+              <h4
+                className={`mt-[2px] ${
                   router.pathname === `${v.route}` ? 'text-orange-500' : null
                 }`}
               >
                 {v.tabbarName}
-              </p>
+              </h4>
             </a>
           </Link>
         );
