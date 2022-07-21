@@ -26,9 +26,6 @@ public class TradeHistoryDTO {
         tradeHistory.setTradeVolume(this.tradeVolume);
         tradeHistory.setTradeCoinName(this.tradeCoinName);
 
-        LocalDateTime now = LocalDateTime.now();
-        String convertedDate = now.format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH:mm:ss"));
-
         tradeHistory.setTradeCreatedAt(DateTimeMethod.getCurrentDateTimeBySting());
         return tradeHistory;
     }
