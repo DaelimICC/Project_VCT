@@ -2,6 +2,7 @@ plugins {
     id 'org.springframework.boot' version '2.7.1'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
+    id 'jacoco'
 }
 
 group = 'com.daelimicc.server'
@@ -12,6 +13,10 @@ configurations {
     compileOnly {
         extendsFrom annotationProcessor
     }
+}
+
+jacoco {
+    toolVersion = "0.8.5"
 }
 
 repositories {
@@ -30,5 +35,31 @@ dependencies {
 }
 
 tasks.named('test') {
+    useJUnitPlatform()
+}
+
+// Jacoco Recovery Setting
+jacocoTestReport {
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+}
+
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            element = "CLASS"
+            limit {
+                counter = 'BRANCH'
+                value = 'COVEREDRATIO'
+            }
+
+            excludes = []
+        }
+    }
+}
+
+test {
     useJUnitPlatform()
 }
