@@ -33,6 +33,11 @@ public class CoinController {
         return coinRepository.findByCoinName(coinName);
     }
 
+    /**
+     * 코인 정보 수정
+     * @param coinDTO
+     * @param coinId
+     */
     @PutMapping("")
     public void updateCoin(@RequestBody CoinDTO coinDTO, @RequestParam(value="cn") String coinId) {
         Coin coin = coinDTO.toEntity();
