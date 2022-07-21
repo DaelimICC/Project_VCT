@@ -1,3 +1,4 @@
+#-*- coding:utf-8 -*-
 from urllib.parse import urlencode, unquote
 
 import pymongo
