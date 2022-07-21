@@ -32,6 +32,7 @@ class UserView(APIView):
             user = User.objects.get(id=int(decoded.get('_auth_user_id')))
 
             res = {
+                'success': True,
                 'email': user.email,
                 'nick': user.nick,
                 'phone': user.phone
@@ -92,9 +93,8 @@ class UserView(APIView):
             user = User.objects.get(id=int(decoded.get('_auth_user_id')))
             user.delete()
             res = {
-                'email': user.email,
-                'nick': user.nick,
-                'phone': user.phone
+                'success': True,
+                'email': user.email
             }
             return JsonResponse(res, status=status.HTTP_200_OK)
 
