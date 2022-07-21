@@ -7,4 +7,8 @@ import java.util.List;
 
 public interface TradeHistoryRepository extends MongoRepository<TradeHistory, String> {
     List<TradeHistory> findByTradeUserId(String userId);
+
+    List<TradeHistory> findByTradeCoinName(String coinName);
+
+    List<TradeHistory> findByTradeUserIdAndTradeCoinName(String userId, String coinName);
 }

@@ -25,8 +25,25 @@ public class TradeController {
         return tradeHistoryRepository.save(tradeHistoryDTO.toEntity());
     }
 
+    /**
+     * Trade History 조회
+     * @param userId
+     * @param coinName
+     * @return
+     */
     @GetMapping("")
-    public List<TradeHistory> getTradeHistoryByUser(@RequestParam String userId) {
-        return tradeHistoryRepository.findByTradeUserId(userId);
+    public List<TradeHistory> getTradeHistoryByUserAndCoin(@RequestParam(value = "id", required = false) String userId, @RequestParam(value = "cn", required = false) String coinName) {
+        if(userId != null && coinName != null) {
+            return tradeHistoryRepository.findByTradeUserIdAndTradeCoinName(userId, coinName);
+        }
+
+        if(userId != null) {
+            return tradeHistoryRepository.findByTradeUserId(userId);
+        } else if(coinName != null) {
+            return tradeHistoryRepository.findByTradeCoinName(coinName);
+        } else {
+            return tradeHistoryRepository.findAll();
+        }
     }
+
 }
