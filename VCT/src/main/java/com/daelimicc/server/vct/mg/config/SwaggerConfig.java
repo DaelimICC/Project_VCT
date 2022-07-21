@@ -19,7 +19,7 @@ public class SwaggerConfig {
 
     private ApiInfo swaggerInfo() {
         return new ApiInfoBuilder().title("VCT API")
-                .description("VCT API Docs").build();
+                .description("VCT API Document").build();
     }
 
     @Bean
