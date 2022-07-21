@@ -5,16 +5,21 @@ import requests
 from pymongo import MongoClient
 import xmltodict
 from pprint import pprint
+import os
+import uuid
 
-client = MongoClient("mongodb://localhost:27017")
-vct_db = client['VCT']
-vct_col = vct_db['VegetableAPI_vegetableprice']
+username = urllib.parse.quote_plus('mongo');password=urllib.parse.quote_plus(os.getenv('MONGO_SERVER_PWD'))
+client = MongoClient('mongodb://%s:%s@localhost:16025/' % (username, password))
+vct_db = client['vctdata']
+vct_col = vct_db['vegetablePrice']
 
 url = "http://www.garak.co.kr/publicdata/dataOpen.do"
 
 vegetableList = ['오이', '감자', '고구마', '배추', '마늘']
 
 for value in vegetableList:
+    dataid = uuid.uuid4()
+
     queryString = "?" + urlencode(
         {
             "dataid": "data4",
@@ -22,7 +27,7 @@ for value in vegetableList:
             "pageidx": 1,
             "portal.templet": False,
             "id": 3202,
-            "passwd": "4664jj1004!",
+            "passwd": os.getenv('API_SECRET_KEY'),
             "p_ymd": "20220528",
             "p_jymd": "20220527",
             "p_jjymd": "20210530",
@@ -31,24 +36,14 @@ for value in vegetableList:
             "pum_nm": value
         }
     )
-    queryURL = url + queryString
-    print(queryURL)
-    response = requests.get(queryURL)
-    print("=== response json data start ===")
-    print(response.text)
-    print("=== response json data end ===")
-    print()
+    response = requests.get(url + queryString)
+
 
     result = xmltodict.parse(response.text)
-    pprint(result)
 
     vegetable_name = result['lists']['list']['PUM_NM_A']
     vegetable_price = result['lists']['list']['AV_P_A']
     vegetable_unit = result['lists']['list']['U_NAME']
-
-    print(vegetable_price)
-    print(vegetable_name)
-    print(vegetable_unit)
 
     if vct_col.estimated_document_count() < 5:
         data = vct_col.insert_one({
