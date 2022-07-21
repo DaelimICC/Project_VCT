@@ -1,7 +1,12 @@
 import { useEffect, useState } from 'react';
 
-const Nav = ({ title, defaultType }) => {
+const Nav = (props) => {
+  const { title, defaultType, setValue } = props;
   const [currentType, setCurrentType] = useState(defaultType);
+  const setData = (data) => {
+    setCurrentType(data);
+    props.setValue(data);
+  };
   return (
     <div
       className={`flex w-[500px] h-[45px] px-[20px] border-b border-gray-400 fixed top-[60px] bg-white ${
@@ -22,7 +27,7 @@ const Nav = ({ title, defaultType }) => {
               key={i}
               type={v.type}
               onClick={() => {
-                setCurrentType(v.type);
+                setData(v.type);
               }}
             >
               {v.title}

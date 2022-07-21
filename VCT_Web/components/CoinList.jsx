@@ -2,7 +2,6 @@ import React from 'react';
 import { StarIcon } from '@heroicons/react/solid';
 
 const CoinList = ({ type }) => {
-  // const type = props;
   console.log(type);
   const testList = [
     {
@@ -40,7 +39,10 @@ const CoinList = ({ type }) => {
     <>
       {testList
         .sort((a, b) => {
-          return b.range - a.range;
+          return type === 'rise' ? b.range - a.range : a.range - b.range;
+        })
+        .filter((e) => {
+          return type === 'rise' ? e.range > 0 : e.range < 0;
         })
         .map((v, i) => {
           return (
