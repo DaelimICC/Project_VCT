@@ -1,6 +1,6 @@
 #-*- coding:utf-8 -*-
 from urllib.parse import urlencode, unquote
-
+import urllib
 import pymongo
 import requests
 from pymongo import MongoClient
@@ -29,9 +29,9 @@ for value in vegetableList:
             "portal.templet": False,
             "id": 3202,
             "passwd": os.getenv('API_SECRET_KEY'),
-            "p_ymd": "20220528",
-            "p_jymd": "20220527",
-            "p_jjymd": "20210530",
+            "p_ymd": "20220721",
+            "p_jymd": "20220720",
+            "p_jjymd": "20210730",
             "d_cd": 2,
             "p_pos_gubun": 1,
             "pum_nm": value
@@ -41,6 +41,9 @@ for value in vegetableList:
 
 
     result = xmltodict.parse(response.text)
+    
+    print(os.getenv('API_SECRET_KEY'))
+    print(result)
 
     vegetable_name = result['lists']['list']['PUM_NM_A']
     vegetable_price = result['lists']['list']['AV_P_A']
