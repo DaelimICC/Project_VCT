@@ -4,10 +4,7 @@ import com.daelimicc.server.vct.coin.domain.Coin;
 import com.daelimicc.server.vct.coin.dto.CoinDTO;
 import com.daelimicc.server.vct.coin.repository.CoinRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,9 +18,14 @@ public class CoinController {
      * 코인 정보 불러오기
      * @return
      */
-    @GetMapping("")
+    @GetMapping("/all")
     public List<Coin> getCoinList() {
         return coinRepository.findAll();
+    }
+
+    @GetMapping("")
+    public Coin getCoin(@RequestParam(value="cn") String coinName) {
+        return coinRepository.findByCoinName(coinName);
     }
 
     // 임시 사용

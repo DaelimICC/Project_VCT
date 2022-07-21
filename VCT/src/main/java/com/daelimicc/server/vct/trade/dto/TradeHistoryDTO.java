@@ -8,6 +8,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
+import com.daelimicc.server.vct.mg.common.utility.DateTimeMethod;
+
 @Data
 public class TradeHistoryDTO {
     private String tradeUserId;
@@ -27,7 +29,7 @@ public class TradeHistoryDTO {
         LocalDateTime now = LocalDateTime.now();
         String convertedDate = now.format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH:mm:ss"));
 
-        tradeHistory.setTradeCreatedAt(convertedDate);
+        tradeHistory.setTradeCreatedAt(DateTimeMethod.getCurrentDateTimeBySting());
         return tradeHistory;
     }
 }
