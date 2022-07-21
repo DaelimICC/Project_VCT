@@ -15,7 +15,7 @@ public class CoinController {
     private final CoinRepository coinRepository;
 
     /**
-     * 코인 정보 불러오기
+     * 모든 코인 정보 불러오기
      * @return
      */
     @GetMapping("/all")
@@ -23,15 +23,20 @@ public class CoinController {
         return coinRepository.findAll();
     }
 
+    /**
+     * 특정 코인 정보 불러오기
+     * @param coinName
+     * @return
+     */
     @GetMapping("")
     public Coin getCoin(@RequestParam(value="cn") String coinName) {
         return coinRepository.findByCoinName(coinName);
     }
 
-    // 임시 사용
-    @PostMapping("")
-    public Coin recordCoin(@RequestBody CoinDTO coinDTO) {
-
-        return coinRepository.save(coinDTO.toEntity());
+    @PutMapping("")
+    public void updateCoin(@RequestBody CoinDTO coinDTO, @RequestParam(value="cn") String coinId) {
+        Coin coin = coinDTO.toEntity();
+        coin.set_id(coinId);
+        coinRepository.save(coin);
     }
 }
