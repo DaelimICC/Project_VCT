@@ -38,7 +38,7 @@ const CoinList = () => {
     <>
       {testList.map((v, i) => {
         return (
-          <div className="flex w-full border border-red-600 px-3" key={i}>
+          <div className="flex w-full mt-1 px-4" key={i}>
             <h3 className="flex p-3 justify-center items-center font-bold">
               {i + 1}
             </h3>
@@ -64,7 +64,7 @@ const CoinList = () => {
                   </h5>
                 </div>
               </div>
-              <div className="flex items-center">
+              <div className="flex items-center text-gray-400 cursor-pointer hover:text-black">
                 <StarIcon className="w-[20px] h-[20px]" />
               </div>
             </div>
