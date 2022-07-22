@@ -3,6 +3,7 @@ package com.daelimicc.server.vct.notice.controller;
 import com.daelimicc.server.vct.notice.domain.Notice;
 import com.daelimicc.server.vct.notice.dto.NoticeDTO;
 import com.daelimicc.server.vct.notice.repository.NoticeRepository;
+import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/notice")
 @RequiredArgsConstructor
+@Api(tags = "공지사항 게시판 CRUD API")
 public class NoticeController {
     private final NoticeRepository noticeRepository;
 

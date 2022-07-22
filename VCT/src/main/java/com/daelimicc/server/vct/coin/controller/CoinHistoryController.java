@@ -3,6 +3,7 @@ package com.daelimicc.server.vct.coin.controller;
 import com.daelimicc.server.vct.coin.domain.CoinHistory;
 import com.daelimicc.server.vct.coin.dto.CoinHistoryDTO;
 import com.daelimicc.server.vct.coin.repository.CoinHistoryRepository;
+import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/coin/hist")
 @RequiredArgsConstructor
+@Api(tags = "상장 코인 변동 정보 API")
 public class CoinHistoryController {
 
     private final CoinHistoryRepository coinHistoryRepository;
