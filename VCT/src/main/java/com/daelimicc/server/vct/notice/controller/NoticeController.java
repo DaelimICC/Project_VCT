@@ -38,7 +38,7 @@ public class NoticeController {
      */
     @ApiOperation(value = "게시판 검색")
     @GetMapping("/{id}")
-    public Notice findByNoticeId( @RequestParam(value = "id") String _id) {
+    public Notice findByNoticeId(@RequestParam(value = "id") String _id) {
         return noticeRepository.findById(_id).get();
     }
 
