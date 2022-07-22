@@ -4,6 +4,7 @@ import com.daelimicc.server.vct.coin.domain.Coin;
 import com.daelimicc.server.vct.coin.dto.CoinDTO;
 import com.daelimicc.server.vct.coin.repository.CoinRepository;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +22,7 @@ public class CoinController {
      * @return
      */
     @GetMapping("/all")
+    @ApiOperation(value = "모든 코인 정보 조회")
     public List<Coin> getCoinList() {
         return coinRepository.findAll();
     }
@@ -31,6 +33,7 @@ public class CoinController {
      * @return
      */
     @GetMapping("")
+    @ApiOperation(value = "특정 코인 데이터 조회")
     public Coin getCoin(@RequestParam(value="cn") String coinName) {
         return coinRepository.findByCoinName(coinName);
     }
@@ -41,6 +44,7 @@ public class CoinController {
      * @param coinId
      */
     @PutMapping("")
+    @ApiOperation(value = "코인 데이터 변동 조회")
     public void updateCoin(@RequestBody CoinDTO coinDTO, @RequestParam(value="cn") String coinId) {
         Coin coin = coinDTO.toEntity();
         coin.set_id(coinId);

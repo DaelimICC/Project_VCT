@@ -4,6 +4,7 @@ import com.daelimicc.server.vct.coin.domain.CoinHistory;
 import com.daelimicc.server.vct.coin.dto.CoinHistoryDTO;
 import com.daelimicc.server.vct.coin.repository.CoinHistoryRepository;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,6 +31,7 @@ public class CoinHistoryController {
      * @return
      */
     @GetMapping("")
+    @ApiOperation(value = "코인 변동 이력 조회")
     public List<CoinHistory> getCoinHistory(@RequestParam(value = "cn", required = false) String coinName,
                                             @RequestParam(value = "crtDttm", required = false) String crtDt) {
         if(coinName == null && crtDt == null) {
