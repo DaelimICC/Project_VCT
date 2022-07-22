@@ -18,10 +18,10 @@ export default function Home() {
   return (
     <div className="pb-[65px]">
       <Nav title={titleList} defaultType={value} setValue={setValue} />
-      <div className="border-b border-gray-500 bg-white">
+      <div className="border-b border-gray-400 bg-white">
         <CoinList type={value} />
       </div>
-      <div className="flex justify-center items-center bg-white h-[50px] mb-[20px] cursor-pointer">
+      <div className="flex justify-center items-center bg-white h-[50px] mb-[20px] cursor-pointer active:opacity-60">
         <h3 className="text-orange-500">더보기</h3>
       </div>
       <VegeIssue />

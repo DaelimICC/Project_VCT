@@ -9,9 +9,7 @@ const Nav = (props) => {
   };
   return (
     <div
-      className={`flex w-[500px] h-[45px] px-[20px] border-b border-gray-400 fixed top-[60px] bg-white ${
-        typeof title === 'object' && 'cursor-pointer'
-      } z-10`}
+      className={`flex w-[500px] h-[45px] px-[20px] border-b border-gray-400 fixed top-[60px] bg-white z-10`}
     >
       {typeof title === 'string' ? (
         <h3 className="flex items-center h-full border-b-2 border-orange-500">
@@ -23,7 +21,7 @@ const Nav = (props) => {
             <h3
               className={`flex items-center mr-[20px] h-full ${
                 v.type === currentType && 'border-b-2 border-orange-500'
-              }`}
+              } ${typeof title === 'object' && 'cursor-pointer'}`}
               key={i}
               type={v.type}
               onClick={() => {
