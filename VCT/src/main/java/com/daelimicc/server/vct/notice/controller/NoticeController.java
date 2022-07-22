@@ -4,6 +4,7 @@ import com.daelimicc.server.vct.notice.domain.Notice;
 import com.daelimicc.server.vct.notice.dto.NoticeDTO;
 import com.daelimicc.server.vct.notice.repository.NoticeRepository;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
@@ -19,23 +20,44 @@ import java.util.List;
 public class NoticeController {
     private final NoticeRepository noticeRepository;
 
+    /**
+     * 게시판 생성
+     * @param noticeDTO
+     * @return
+     */
+    @ApiOperation(value = "게시판 생성")
     @PostMapping("")
     public Notice recordNotice(@RequestBody NoticeDTO noticeDTO) {
         return noticeRepository.save(noticeDTO.toEntity());
     }
 
+    /**
+     * 특정 게시판 정보 불러오기
+     * @param _id
+     * @return
+     */
+    @ApiOperation(value = "게시판 검색")
     @GetMapping("/{id}")
-    public Notice findByNoticeId(@PathVariable String id) {
-        return noticeRepository.findById(id).get();
+    public Notice findByNoticeId( @RequestParam(value = "id") String _id) {
+        return noticeRepository.findById(_id).get();
     }
+
+    /**
+     * 모든 게시판 정보 불러오기
+     * @return
+     */
+    @ApiOperation(value = "게시판 전체")
     @GetMapping("/all")
     public List<Notice> findNoticeAll() {
         return noticeRepository.findAll(Sort.by(Sort.Direction.DESC,"noticeCrtDttm"));
     }
 
-
-
-
+    /**
+     * 게시판 정보 수정
+     * @param noticeDTO
+     * @param _id
+     */
+    @ApiOperation(value = "게시판 수정")
     @PutMapping("")
     public ResponseEntity<Notice> updateNotice(@RequestBody NoticeDTO noticeDTO,
                                                @RequestParam(value = "id") String _id) {
@@ -45,6 +67,11 @@ public class NoticeController {
         return new ResponseEntity<>(noticeRepository.save(notice), HttpStatus.OK);
     }
 
+    /**
+     * 게시판 삭제
+     * @param _id
+     */
+    @ApiOperation(value = "게시판 삭제")
     @DeleteMapping("")
     public List<Notice> deleteNotice(@RequestParam(value = "id") String _id){
         return noticeRepository.deleteNoticeBy_id(_id);
