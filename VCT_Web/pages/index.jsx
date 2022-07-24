@@ -14,15 +14,28 @@ export default function Home() {
     // { id: 2, title: '거래량', type: 'voulme' },
   ];
   const [value, setValue] = useState(titleList[0].type);
+  const [isToggle, setIsToggle] = useState(false);
 
   return (
-    <div className="pb-[65px]">
-      <Nav title={titleList} defaultType={value} setValue={setValue} />
-      <div className="border-b border-gray-400 bg-white">
-        <CoinList type={value} />
+    <div className="pb-[65px] bg-gray-100">
+      <Nav
+        title={titleList}
+        defaultType={value}
+        setValue={setValue}
+        setIsToggle={setIsToggle}
+      />
+      <div className="border-b border-gray-400 bg-white  divide-y divide-slate-200">
+        <CoinList type={value} isToggle={isToggle} />
       </div>
-      <div className="flex justify-center items-center bg-white h-[50px] mb-[20px] cursor-pointer active:opacity-60">
-        <h3 className="text-orange-500">더보기</h3>
+      <div
+        className="flex justify-center items-center bg-white h-[50px] mb-[20px] cursor-pointer active:opacity-60"
+        onClick={() => {
+          setIsToggle(!isToggle);
+        }}
+      >
+        <h3 className="text-orange-500">
+          {isToggle === false ? '더보기' : '▲'}
+        </h3>
       </div>
       <VegeIssue />
     </div>

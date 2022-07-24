@@ -1,7 +1,8 @@
 import React from 'react';
 import { StarIcon } from '@heroicons/react/solid';
 
-const CoinList = ({ type }) => {
+const CoinList = ({ type, isToggle }) => {
+  // console.log(isToggle);
   // console.log(type);
   const testList = [
     {
@@ -38,6 +39,12 @@ const CoinList = ({ type }) => {
       coinName: '고구마',
       image: '🍠',
       currentPrice: 900,
+      range: -1.26,
+    },
+    {
+      coinName: '고구마',
+      image: '🍠',
+      currentPrice: 900,
       range: 1.66,
     },
     {
@@ -57,7 +64,13 @@ const CoinList = ({ type }) => {
           return type === 'rise' ? e.range > 0 : e.range < 0;
         })
         .map((v, i) => {
-          if (i < 5) {
+          let num = 0;
+          if (isToggle === true) {
+            num = 10;
+          } else {
+            num = 5;
+          }
+          if (i < num) {
             return (
               <div className="flex w-full mt-1 px-4" key={i}>
                 <h3 className="flex p-3 justify-center items-center font-bold">

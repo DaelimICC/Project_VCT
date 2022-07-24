@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 
 const Nav = (props) => {
-  const { title, defaultType, setValue } = props;
+  const { title, defaultType, setValue, setIsToggle } = props;
   const [currentType, setCurrentType] = useState(defaultType);
   const setData = (data) => {
     setCurrentType(data);
     props.setValue(data);
+    props.setIsToggle(false);
   };
   return (
     <div
