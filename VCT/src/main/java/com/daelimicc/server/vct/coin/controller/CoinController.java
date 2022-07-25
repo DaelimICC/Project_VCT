@@ -10,8 +10,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController("/coin")
+@RestController
 @RequiredArgsConstructor
+@RequestMapping("/coin")
 @Api(tags = "상장 코인 정보 API")
 public class CoinController {
 
