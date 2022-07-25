@@ -1,10 +1,13 @@
+import CoinChart from '../components/CoinChart';
 import Nav from '../components/layout/nav';
 
 const Chart = () => {
   return (
     <>
       <Nav title="차트" />
-      차트페이지
+      <div className="border border-black px-[20px]">
+        <CoinChart />
+      </div>
     </>
   );
 };
