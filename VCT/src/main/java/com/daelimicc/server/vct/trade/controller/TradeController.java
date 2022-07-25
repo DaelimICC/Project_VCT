@@ -20,8 +20,8 @@ public class TradeController {
 
     /**
      * Trade History 저장
-     * @param tradeHistoryDTO
-     * @return
+     * @param tradeHistoryDTO 거래 기록 DTO
+     * @return 거래 기록 저장 결과
      */
     @ApiOperation(value = "Trade History 저장")
     @PostMapping("")
@@ -31,9 +31,9 @@ public class TradeController {
 
     /**
      * Trade History 조회
-     * @param userId
-     * @param coinName
-     * @return
+     * @param userId 사용자 ID
+     * @param coinName 코인 이름
+     * @return 거래 기록 목록
      */
     @ApiOperation(value = "Trade History 조회")
     @GetMapping("")

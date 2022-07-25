@@ -18,8 +18,8 @@ public class UserController {
 
     /**
      * 사용자 생성
-     * @param userDTO
-     * @return
+     * @param userDTO 사용자 정보
+     * @return 생성된 사용자 정보
      */
     @ApiOperation(value = "사용자 생성")
     @PostMapping("")
@@ -29,8 +29,8 @@ public class UserController {
 
     /**
      * 사용자 조회
-     * @param id
-     * @return
+     * @param id 사용자 아이디
+     * @return 사용자 정보
      */
     @ApiOperation(value = "사용자 정보 불러오기")
     @GetMapping("")
@@ -40,7 +40,7 @@ public class UserController {
 
     /**
      * 사용자 리스트 호출
-     * @return
+     * @return 사용자 리스트
      */
     @ApiOperation(value = "사용자 리스트 불러오기")
     @GetMapping("/list")
@@ -50,7 +50,7 @@ public class UserController {
 
     /**
      * 사용자 정보 삭제
-     * @param id
+     * @param id 사용자 아이디
      */
     @ApiOperation(value = "사용자 삭제")
     @DeleteMapping("")
@@ -60,8 +60,8 @@ public class UserController {
 
     /**
      * 사용자 정보 수정
-     * @param userDTO
-     * @return
+     * @param userDTO 사용자 정보
+     * @return 수정된 사용자 정보
      */
     @ApiOperation(value = "사용자 정보 수정")
     @PutMapping("")

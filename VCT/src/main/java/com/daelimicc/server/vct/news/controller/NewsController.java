@@ -19,7 +19,7 @@ public class NewsController {
 
     /**
      * 모든 뉴스 정보 불러오기
-     * @return
+     * @return 뉴스 정보 목록
      */
 
     @ApiOperation(value = "뉴스 전체")
@@ -30,7 +30,7 @@ public class NewsController {
 
     /**
      * 최근 5개 뉴스 정보 불러오기
-     * @return
+     * @return 뉴스 정보 목록
      */
     @ApiOperation(value = "최근 뉴스")
     @GetMapping("")
