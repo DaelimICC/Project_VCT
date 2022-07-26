@@ -36,7 +36,6 @@ public class WebSocketHandler extends TextWebSocketHandler {
     // Chart Socket (Period 1sec)
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-        session.sendMessage(new TextMessage("Connected"));
         try {
             TimerTask task = new TimerTask() {
                 public void run() {
