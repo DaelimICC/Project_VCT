@@ -35,7 +35,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
 
     // Chart Socket (Period 1sec)
     @Override
-    public void afterConnectionEstablished(WebSocketSession session) throws Exception {
+    public synchronized void afterConnectionEstablished(WebSocketSession session) throws Exception {
         try {
             TimerTask task = new TimerTask() {
                 public void run() {
