@@ -121,6 +121,8 @@ import {
   VictoryLine,
   VictoryBrushContainer,
   VictoryAxis,
+  VictoryCandlestick,
+  VictoryBar,
 } from 'victory';
 
 function CoinChart(props) {
@@ -131,9 +133,7 @@ function CoinChart(props) {
   const [state, setState] = useState(null);
 
   const handleZoom = (domain) => {
-    // console.log(domain);
     setState(domain);
-    // console.log(state);
   };
 
   const handleBrush = (domain) => {
@@ -222,13 +222,15 @@ function CoinChart(props) {
       volume: 1313455, //거래량
     },
   ];
-  useEffect(() => {}, []);
+  // console.log(new Date(2022, 7, 25));
+  // useEffect(() => {}, []);
   return (
     <div>
       <VictoryChart
         // width={550}
         // height={300}
         scale={{ x: 'time' }}
+        domainPadding={{ x: 25 }}
         containerComponent={
           <VictoryZoomContainer
             responsive={false}
@@ -238,7 +240,14 @@ function CoinChart(props) {
           />
         }
       >
-        <VictoryLine
+        <VictoryCandlestick
+          candleRatio={1}
+          // candleWidth={50}
+          candleColors={{ positive: 'red', negative: 'blue' }}
+          data={data}
+          // domain={{ y: [20000, 30000] }}
+        />
+        {/* <VictoryLine
           style={{
             data: { stroke: 'tomato' },
           }}
@@ -252,7 +261,7 @@ function CoinChart(props) {
             { x: new Date(2011, 1, 1), y: 270 },
             { x: new Date(2015, 1, 1), y: 470 },
           ]}
-        />
+        /> */}
       </VictoryChart>
 
       <VictoryChart
@@ -260,6 +269,7 @@ function CoinChart(props) {
         height={90}
         scale={{ x: 'time' }}
         padding={{ top: 0, left: 50, right: 50, bottom: 30 }}
+        // domainPadding={{ x: 5 }}
         containerComponent={
           <VictoryBrushContainer
             responsive={false}
@@ -270,18 +280,10 @@ function CoinChart(props) {
         }
       >
         <VictoryAxis
-          tickValues={[
-            new Date(1985, 1, 1),
-            new Date(1990, 1, 1),
-            new Date(1995, 1, 1),
-            new Date(2000, 1, 1),
-            new Date(2005, 1, 1),
-            new Date(2010, 1, 1),
-            new Date(2015, 1, 1),
-          ]}
+          tickValues={data.x}
           tickFormat={(x) => new Date(x).getFullYear()}
         />
-        <VictoryLine
+        {/* <VictoryLine
           style={{
             data: { stroke: 'tomato' },
           }}
@@ -295,6 +297,14 @@ function CoinChart(props) {
             { x: new Date(2011, 1, 1), y: 270 },
             { x: new Date(2015, 1, 1), y: 470 },
           ]}
+        /> */}
+        <VictoryBar
+          // barRatio={0.8}
+          style={{ data: { fill: '#c43a31' } }}
+          data={data}
+          x="date"
+          y="volume"
+          alignment="start"
         />
       </VictoryChart>
     </div>
