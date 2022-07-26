@@ -3,8 +3,6 @@ package com.daelimicc.server.vct.user.dto;
 import com.daelimicc.server.vct.user.domain.User;
 import lombok.Data;
 
-import java.util.UUID;
-
 @Data
 public class UserDTO {
 
