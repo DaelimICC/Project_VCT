@@ -37,8 +37,9 @@ for value in vegetableList:
             "pum_nm": value
         }
     )
+    
     response = requests.get(url + queryString)
-
+    
 
     result = xmltodict.parse(response.text)
     
