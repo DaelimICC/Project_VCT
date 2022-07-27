@@ -2,6 +2,7 @@ package com.daelimicc.server.vct.mg.common.handler;
 
 import com.daelimicc.server.vct.coin.domain.Coin;
 import com.daelimicc.server.vct.coin.repository.CoinRepository;
+import com.daelimicc.server.vct.status.repository.CoinStatusRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -22,6 +23,7 @@ import java.util.TimerTask;
 public class WebSocketHandler extends TextWebSocketHandler {
 
     private final CoinRepository coinRepository;
+    private final CoinStatusRepository coinStatusRepository;
 
     public List<Coin> getCoinChartList() {
         return coinRepository.findAll();
