@@ -50,7 +50,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
             };
             Timer timer = new Timer("ChartThreadTimer");
             long delay = 3000L;
-            long period = 1000L;
+            long period = 5000L;
             timer.schedule(task, delay, period);
         } catch (IllegalStateException e) {
             throw new IllegalStateException(e);
