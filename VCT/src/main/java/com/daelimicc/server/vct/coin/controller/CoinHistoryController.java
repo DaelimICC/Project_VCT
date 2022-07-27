@@ -26,9 +26,9 @@ public class CoinHistoryController {
 
     /**
      * 코인 이력 조회
-     * @param coinName
-     * @param crtDt
-     * @return
+     * @param coinName 코인 이름
+     * @param crtDt 조회 시작일
+     * @return 코인 이력 목록
      */
     @GetMapping("")
     @ApiOperation(value = "코인 변동 이력 조회")

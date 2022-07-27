@@ -10,8 +10,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController("/coin")
+@RestController
 @RequiredArgsConstructor
+@RequestMapping("/coin")
 @Api(tags = "상장 코인 정보 API")
 public class CoinController {
 
@@ -19,7 +20,7 @@ public class CoinController {
 
     /**
      * 모든 코인 정보 불러오기
-     * @return
+     * @return 코인 정보 목록
      */
     @GetMapping("/all")
     @ApiOperation(value = "모든 코인 정보 조회")
@@ -29,8 +30,8 @@ public class CoinController {
 
     /**
      * 특정 코인 정보 불러오기
-     * @param coinName
-     * @return
+     * @param coinName 코인 이름
+     * @return 코인 정보
      */
     @GetMapping("")
     @ApiOperation(value = "특정 코인 데이터 조회")
@@ -40,8 +41,8 @@ public class CoinController {
 
     /**
      * 코인 정보 수정
-     * @param coinDTO
-     * @param coinId
+     * @param coinDTO 코인 정보
+     * @param coinId 코인 아이디
      */
     @PutMapping("")
     @ApiOperation(value = "코인 데이터 변동 조회")

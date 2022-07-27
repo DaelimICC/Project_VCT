@@ -22,8 +22,8 @@ public class NoticeController {
 
     /**
      * 게시판 생성
-     * @param noticeDTO
-     * @return
+     * @param noticeDTO 게시판 정보
+     * @return 게시판 생성 결과
      */
     @ApiOperation(value = "게시판 생성")
     @PostMapping("")
@@ -33,18 +33,18 @@ public class NoticeController {
 
     /**
      * 특정 게시판 정보 불러오기
-     * @param _id
-     * @return
+     * @param _id 게시판 아이디
+     * @return 게시판 정보
      */
     @ApiOperation(value = "게시판 검색")
     @GetMapping("/{id}")
-    public Notice findByNoticeId( @RequestParam(value = "id") String _id) {
+    public Notice findByNoticeId(@RequestParam(value = "id") String _id) {
         return noticeRepository.findById(_id).get();
     }
 
     /**
      * 모든 게시판 정보 불러오기
-     * @return
+     * @return 게시판 정보 목록
      */
     @ApiOperation(value = "게시판 전체")
     @GetMapping("/all")
@@ -54,8 +54,8 @@ public class NoticeController {
 
     /**
      * 게시판 정보 수정
-     * @param noticeDTO
-     * @param _id
+     * @param noticeDTO 게시판 정보
+     * @param _id 게시판 아이디
      */
     @ApiOperation(value = "게시판 수정")
     @PutMapping("")
@@ -69,7 +69,7 @@ public class NoticeController {
 
     /**
      * 게시판 삭제
-     * @param _id
+     * @param _id 게시판 아이디
      */
     @ApiOperation(value = "게시판 삭제")
     @DeleteMapping("")
