@@ -12,4 +12,5 @@ public class CoinHistory {
     private String coinName;
     private float coinPrice;
     private String crtDttm;
+
 }

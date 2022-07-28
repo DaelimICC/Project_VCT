@@ -26,4 +26,5 @@ public class Coin {
         Gson gson = new Gson();
         return gson.toJson(this);
     }
+
 }
