@@ -1,59 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StarIcon } from '@heroicons/react/solid';
-
+import CoinData from '../pages/api/getData.json';
 const CoinList = ({ type, isToggle }) => {
-  // console.log(isToggle);
-  // console.log(type);
-  const testList = [
-    {
-      coinName: '옥수수',
-      image: '🌽',
-      currentPrice: 1500,
-      range: 2.15,
-    },
-    {
-      coinName: '오이',
-      image: '🥒',
-      currentPrice: 1200,
-      range: 2.12,
-    },
-    {
-      coinName: '토마토',
-      image: '🍅',
-      currentPrice: 2200,
-      range: 1.92,
-    },
-    {
-      coinName: '당근',
-      image: '🥕',
-      currentPrice: 1100,
-      range: 1.99,
-    },
-    {
-      coinName: '고구마',
-      image: '🍠',
-      currentPrice: 900,
-      range: -1.66,
-    },
-    {
-      coinName: '고구마',
-      image: '🍠',
-      currentPrice: 900,
-      range: -1.26,
-    },
-    {
-      coinName: '고구마',
-      image: '🍠',
-      currentPrice: 900,
-      range: 1.66,
-    },
-    {
-      coinName: '고구마',
-      image: '🍠',
-      currentPrice: 900,
-      range: 1.66,
-    },
-  ];
+  const [testList, setTsetList] = useState(CoinData);
+
   return (
     <>
       {testList
@@ -98,7 +48,30 @@ const CoinList = ({ type, isToggle }) => {
                       </h5>
                     </div>
                   </div>
-                  <div className="flex items-center text-gray-400 cursor-pointer hover:text-black">
+                  <div
+                    className={`flex items-center text-gray-400 cursor-pointer ${
+                      v.interests && 'text-black'
+                    }  hover:text-black`}
+                    onClick={
+                      () => {
+                        setTsetList(() => {
+                          const newData = [
+                            {
+                              ...testList,
+                              [i]: {
+                                ...v,
+                                interests: true,
+                              },
+                            },
+                          ];
+                          return newData;
+                        });
+                      }
+                      // setTsetList((pre) => {
+                      //   return [{ ...pre, [i]: { interests: true } }];
+                      // });
+                    }
+                  >
                     <StarIcon className="w-[20px] h-[20px]" />
                   </div>
                 </div>
