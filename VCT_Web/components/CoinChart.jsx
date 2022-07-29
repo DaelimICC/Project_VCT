@@ -10,18 +10,14 @@ import {
 } from 'victory';
 
 function CoinChart(props) {
-  // const constructor = () => {
-  //   super();
-  //   this.state = {};
-  // };
   const [state, setState] = useState();
 
   const handleZoom = (domain) => {
-    setState(domain);
+    setState({ x: domain.x });
   };
 
   const handleBrush = (domain) => {
-    setState(domain);
+    setState({ x: domain.x });
   };
 
   const data = [
@@ -106,16 +102,11 @@ function CoinChart(props) {
       volume: 1313455, //거래량
     },
   ];
-  // console.log(new Date(2022, 7, 25));
-  // useEffect(() => {}, []);
   return (
     <div>
       <VictoryChart
-        // width={550}
-        // height={300}
         scale={{ x: 'time' }}
         domainPadding={{ x: 25 }}
-        // padding={{ top: 0, left: 50, right: 50, bottom: 30 }}
         containerComponent={
           <VictoryZoomContainer
             responsive={false}
@@ -127,16 +118,12 @@ function CoinChart(props) {
       >
         <VictoryCandlestick
           candleRatio={1}
-          // candleWidth={20}
           candleColors={{ positive: 'red', negative: 'blue' }}
           data={data}
-          // candleWidth={({ index }) => index * 2 + 8}
-          // domain={{ y: [20000, 30000] }}
         />
       </VictoryChart>
 
       <VictoryChart
-        // width={550}
         height={90}
         scale={{ x: 'time' }}
         padding={{ top: 0, left: 50, right: 50, bottom: 30 }}
@@ -150,23 +137,13 @@ function CoinChart(props) {
           />
         }
       >
-        <VictoryAxis
-          tickValues={data.x}
-          // padding={{ right: 200 }}
-          tickFormat={data.x}
-          // tickFormat={(x) => new Date(x).getFullYear()}
-          // style={{ tickLabels: { padding: 5, fontSize: 12 } }}
-        />
+        <VictoryAxis tickValues={data.x} tickFormat={data.x} />
         <VictoryBar
-          // barRatio={0.8}
           style={{ data: { fill: '#c43a31' } }}
           data={data}
           barRatio={1}
-          // barWidth={20}
-          // padding={{ right: 50 }}
           x="x"
           y="volume"
-          // alignment="start"
         />
       </VictoryChart>
     </div>

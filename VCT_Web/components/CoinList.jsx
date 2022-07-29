@@ -88,7 +88,7 @@ const CoinList = ({ type, isToggle, pageType }) => {
           <div className="flex w-full justify-between">
             <div className="flex">
               <div className="flex justify-center items-center ">
-                <div className="w-[40px] h-[40px] flex p-3 justify-center items-center rounded-full bg-yellow-100">
+                <div className="text-[30px] w-[60px] h-[60px] flex p-3 justify-center items-center rounded-full bg-yellow-100">
                   {value.image}
                 </div>
               </div>
