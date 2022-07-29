@@ -25,7 +25,7 @@ export default function Home() {
         setIsToggle={setIsToggle}
       />
       <div className="border-b border-gray-400 bg-white  divide-y divide-slate-200">
-        <CoinList type={value} isToggle={isToggle} />
+        <CoinList type={value} isToggle={isToggle} pageType="Home" />
       </div>
       <div
         className="flex justify-center items-center bg-white h-[50px] mb-[20px] cursor-pointer active:opacity-60"

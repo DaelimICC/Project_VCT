@@ -1,0 +1,82 @@
+[
+  {
+    "coinName": "옥수수",
+    "image": "🌽",
+    "color": "bg-yellow-100",
+    "currentPrice": 1500,
+    "range": 2.15,
+    "interests": true
+  },
+  {
+    "coinName": "오이",
+    "image": "🥒",
+    "color": "bg-green-300",
+    "currentPrice": 1200,
+    "range": -2.12,
+    "interests": false
+  },
+  {
+    "coinName": "토마토",
+    "image": "🍅",
+    "color": "bg-red-100",
+    "currentPrice": 2200,
+    "range": 1.92,
+    "interests": false
+  },
+  {
+    "coinName": "당근",
+    "image": "🥕",
+    "color": "bg-orange-100",
+    "currentPrice": 1100,
+    "range": 1.99,
+    "interests": false
+  },
+  {
+    "coinName": "배추",
+    "image": "🥬",
+    "color": "bg-green-300",
+    "currentPrice": 1200,
+    "range": 1.62,
+    "interests": false
+  },
+  {
+    "coinName": "양파",
+    "image": "🧅",
+    "color": "bg-yellow-200",
+    "currentPrice": 700,
+    "range": -3.12,
+    "interests": false
+  },
+  {
+    "coinName": "마늘",
+    "image": "🧄",
+    "color": "bg-gray-300",
+    "currentPrice": 1400,
+    "range": -0.87,
+    "interests": false
+  },
+  {
+    "coinName": "고추",
+    "image": "🌶",
+    "color": "bg-red-100",
+    "currentPrice": 500,
+    "range": -1.43,
+    "interests": false
+  },
+  {
+    "coinName": "가지",
+    "image": "🍆",
+    "color": "bg-yellow-100",
+    "currentPrice": 800,
+    "range": -0.25,
+    "interests": false
+  },
+  {
+    "coinName": "감자",
+    "image": "🥔",
+    "color": "bg-yellow-200",
+    "currentPrice": 1800,
+    "range": 4.25,
+    "interests": false
+  }
+]
