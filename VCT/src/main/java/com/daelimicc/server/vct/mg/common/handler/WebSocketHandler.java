@@ -35,6 +35,80 @@ public class WebSocketHandler extends TextWebSocketHandler {
     @Override
     public synchronized void afterConnectionEstablished(WebSocketSession session) throws IOException {
 
+        final String dummyData = "[\n" +
+                "    {\n" +
+                "        \"high\" : \"20860\",\n" +
+                "        \"open\" : \"20380\",\n" +
+                "        \"close\" : \"20535\",\n" +
+                "        \"low\" : \"19663\",\n" +
+                "        \"volume\" : \"37\"\n" +
+                "    },\n" +
+                "    {\n" +
+                "        \"high\" : \"21468\",\n" +
+                "        \"open\" : \"20535\",\n" +
+                "        \"close\" : \"21462\",\n" +
+                "        \"low\" : \"19663\",\n" +
+                "        \"volume\" : \"21\"\n" +
+                "    },\n" +
+                "    {\n" +
+                "        \"high\" : \"21677\",\n" +
+                "        \"open\" : \"21462\",\n" +
+                "        \"close\" : \"19924\",\n" +
+                "        \"low\" : \"19619\",\n" +
+                "        \"volume\" : \"-13\"\n" +
+                "    },\n" +
+                "    {\n" +
+                "        \"high\" : \"21677\",\n" +
+                "        \"open\" : \"19924\",\n" +
+                "        \"close\" : \"20330\",\n" +
+                "        \"low\" : \"18879\",\n" +
+                "        \"volume\" : \"3\"\n" +
+                "    },\n" +
+                "    {\n" +
+                "        \"high\" : \"21820\",\n" +
+                "        \"open\" : \"20330\",\n" +
+                "        \"close\" : \"21850\",\n" +
+                "        \"low\" : \"18879\",\n" +
+                "        \"volume\" : \"70\"\n" +
+                "    },\n" +
+                "    {\n" +
+                "        \"high\" : \"22163\",\n" +
+                "        \"open\" : \"21805\",\n" +
+                "        \"close\" : \"19889\",\n" +
+                "        \"low\" : \"18970\",\n" +
+                "        \"volume\" : \"-102\"\n" +
+                "    },\n" +
+                "    {\n" +
+                "        \"high\" : \"22163\",\n" +
+                "        \"open\" : \"19889\",\n" +
+                "        \"close\" : \"20243\",\n" +
+                "        \"low\" : \"18879\",\n" +
+                "        \"volume\" : \"10\"\n" +
+                "    },\n" +
+                "    {\n" +
+                "        \"high\" : \"22163\",\n" +
+                "        \"open\" : \"20243\",\n" +
+                "        \"close\" : \"20855\",\n" +
+                "        \"low\" : \"18879\",\n" +
+                "        \"volume\" : \"3\"\n" +
+                "    },\n" +
+                "    {\n" +
+                "        \"high\" : \"22456\",\n" +
+                "        \"open\" : \"20855\",\n" +
+                "        \"close\" : \"21601\",\n" +
+                "        \"low\" : \"18879\",\n" +
+                "        \"volume\" : \"11\"\n" +
+                "    },\n" +
+                "    {\n" +
+                "        \"high\" : \"22494\",\n" +
+                "        \"open\" : \"21601\",\n" +
+                "        \"close\" : \"22494\",\n" +
+                "        \"low\" : \"18879\",\n" +
+                "        \"volume\" : \"33\"\n" +
+                "    }\n" +
+                "\n" +
+                "]";
+
         Timer timer = new Timer("ChartThreadTimer");
         long delay = 3000L;
         long period = 1000L;
@@ -45,7 +119,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
                         log.info("Session is closed");
                         this.cancel();
                     }
-                    session.sendMessage(new TextMessage(getCoinChartList().toString()));
+                    session.sendMessage(new TextMessage(dummyData));
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 } catch (IllegalStateException e) {
