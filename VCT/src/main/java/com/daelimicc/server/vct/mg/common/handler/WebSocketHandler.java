@@ -122,8 +122,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
                     session.sendMessage(new TextMessage(dummyData));
                 } catch (IOException e) {
                     throw new RuntimeException(e);
-                } catch (IllegalStateException e) {
-                    throw new IllegalStateException(e);
+                } catch (IllegalStateException ignored) {
                 }
             }
         };
