@@ -5,16 +5,13 @@ import CoinList from '../components/CoinList';
 
 const Chart = () => {
   return (
-    <>
+    <div className="bg-white">
       <Nav title="차트" />
-      <div className="">
-        {/* <CoinListBox /> */}
-        <CoinList />
-      </div>
+      <CoinList />
       <div className="border border-black px-[20px]">
         <CoinChart />
       </div>
-    </>
+    </div>
   );
 };
 

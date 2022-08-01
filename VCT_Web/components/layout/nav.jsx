@@ -20,8 +20,10 @@ const Nav = (props) => {
         title.map((v, i) => {
           return (
             <h3
-              className={`flex items-center mr-[20px] h-full ${
-                v.type === currentType && 'border-b-2 border-orange-500'
+              className={`flex items-center mr-[20px] h-full border-b-2 duration-300 ${
+                v.type === currentType
+                  ? 'border-orange-500'
+                  : 'border-white text-black/60'
               } ${typeof title === 'object' && 'cursor-pointer'}`}
               key={i}
               type={v.type}

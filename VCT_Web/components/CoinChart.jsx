@@ -1,4 +1,9 @@
+import dynamic from 'next/dynamic';
 import React, { useEffect, useState } from 'react';
+// const Victorys = dynamic(
+//   import('victory').then((mod) => mod.victory),
+//   { ssr: false }
+// );
 import {
   VictoryChart,
   VictoryZoomContainer,
@@ -19,7 +24,7 @@ function CoinChart(props) {
   const handleBrush = (domain) => {
     setState({ x: domain.x });
   };
-
+  // console.log(state);
   const data = [
     {
       x: new Date(2022, 7, 22),
@@ -118,8 +123,14 @@ function CoinChart(props) {
       >
         <VictoryCandlestick
           candleRatio={1}
-          candleColors={{ positive: 'red', negative: 'blue' }}
+          candleColors={{ positive: '#df6050', negative: '#4c81eb' }}
           data={data}
+          style={{
+            data: {
+              stroke: '#cccc',
+              strokeWidth: 2,
+            },
+          }}
         />
       </VictoryChart>
 
