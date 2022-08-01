@@ -5,7 +5,7 @@ import CoinList from '../components/CoinList';
 
 const Chart = () => {
   return (
-    <div className="bg-white">
+    <div className="bg-white h-full">
       <Nav title="차트" />
       <CoinList />
       <div className="border border-black px-[20px]">
