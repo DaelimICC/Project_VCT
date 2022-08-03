@@ -6,7 +6,6 @@ import CoinListBox from './common/CoinListBox';
 const CoinList = ({ type, isToggle, pageType }) => {
   const [testList, setTsetList] = useState(CoinData);
   const [value, setValue] = useState(CoinData[0]);
-
   return (
     <>
       {pageType === 'Home' ? (
@@ -37,7 +36,6 @@ const CoinList = ({ type, isToggle, pageType }) => {
                           className="w-[40px] h-[40px] flex p-3 justify-center items-center rounded-full"
                           style={{ backgroundColor: v.color }}
                         >
-                          {/* {v.color} */}
                           {v.image}
                         </div>
                       </div>
@@ -59,26 +57,19 @@ const CoinList = ({ type, isToggle, pageType }) => {
                     <div
                       className={`flex items-center text-gray-400 cursor-pointer ${
                         v.interests && 'text-black'
-                      }  hover:text-black`}
-                      // onClick={
-                      //   () => {
-                      //     setTsetList(() => {
-                      //       const newData = [
-                      //         {
-                      //           ...testList,
-                      //           [i]: {
-                      //             ...v,
-                      //             interests: true,
-                      //           },
-                      //         },
-                      //       ];
-                      //       return newData;
-                      //     });
-                      //   }
-                      //   // setTsetList((pre) => {
-                      //   //   return [{ ...pre, [i]: { interests: true } }];
-                      //   // });
-                      // }
+                      }  hover:opacity-60 active:opacity-90`}
+                      onClick={() => {
+                        setTsetList(() => {
+                          const newData = {
+                            ...testList,
+                            [i]: {
+                              ...v,
+                              interests: !v.interests,
+                            },
+                          };
+                          return Object.values(newData);
+                        });
+                      }}
                     >
                       <StarIcon className="w-[20px] h-[20px]" />
                     </div>
