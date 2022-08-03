@@ -46,7 +46,7 @@ const CoinList = ({ type, isToggle, pageType }) => {
                         <h5 className="text-gray-500">
                           {v.currentPrice.toLocaleString()}원
                           <span
-                            className={`${
+                            className={`ml-[3px] ${
                               v.range > 0 ? 'text-red-600' : 'text-blue-600'
                             } font-bold`}
                           >
@@ -104,7 +104,7 @@ const CoinList = ({ type, isToggle, pageType }) => {
                 <h5 className="text-gray-500">
                   {value.currentPrice.toLocaleString()}원
                   <span
-                    className={`${
+                    className={`ml-[3px] ${
                       value.range > 0 ? 'text-red-600' : 'text-blue-600'
                     } font-bold`}
                   >
