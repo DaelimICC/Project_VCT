@@ -33,7 +33,11 @@ const CoinList = ({ type, isToggle, pageType }) => {
                   <div className="flex w-full justify-between">
                     <div className="flex">
                       <div className="flex justify-center items-center ">
-                        <div className="w-[40px] h-[40px] flex p-3 justify-center items-center rounded-full bg-yellow-100">
+                        <div
+                          className="w-[40px] h-[40px] flex p-3 justify-center items-center rounded-full"
+                          style={{ backgroundColor: v.color }}
+                        >
+                          {/* {v.color} */}
                           {v.image}
                         </div>
                       </div>
@@ -56,25 +60,25 @@ const CoinList = ({ type, isToggle, pageType }) => {
                       className={`flex items-center text-gray-400 cursor-pointer ${
                         v.interests && 'text-black'
                       }  hover:text-black`}
-                      onClick={
-                        () => {
-                          setTsetList(() => {
-                            const newData = [
-                              {
-                                ...testList,
-                                [i]: {
-                                  ...v,
-                                  interests: true,
-                                },
-                              },
-                            ];
-                            return newData;
-                          });
-                        }
-                        // setTsetList((pre) => {
-                        //   return [{ ...pre, [i]: { interests: true } }];
-                        // });
-                      }
+                      // onClick={
+                      //   () => {
+                      //     setTsetList(() => {
+                      //       const newData = [
+                      //         {
+                      //           ...testList,
+                      //           [i]: {
+                      //             ...v,
+                      //             interests: true,
+                      //           },
+                      //         },
+                      //       ];
+                      //       return newData;
+                      //     });
+                      //   }
+                      //   // setTsetList((pre) => {
+                      //   //   return [{ ...pre, [i]: { interests: true } }];
+                      //   // });
+                      // }
                     >
                       <StarIcon className="w-[20px] h-[20px]" />
                     </div>
@@ -88,7 +92,10 @@ const CoinList = ({ type, isToggle, pageType }) => {
           <div className="flex w-full justify-between">
             <div className="flex">
               <div className="flex justify-center items-center ">
-                <div className="text-[30px] w-[60px] h-[60px] flex p-3 justify-center items-center rounded-full bg-yellow-100">
+                <div
+                  className="text-[30px] w-[60px] h-[60px] flex p-3 justify-center items-center rounded-full"
+                  style={{ backgroundColor: value.color }}
+                >
                   {value.image}
                 </div>
               </div>
