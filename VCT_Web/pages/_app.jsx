@@ -4,21 +4,21 @@ import Layout from '../components/layout';
 import 'tailwindcss/tailwind.css';
 import { socket, SocketContext } from '../src/service/socket';
 import { useEffect, useState } from 'react';
-
+import { SOCKET_EVENT } from '../src/service/socket';
 function MyApp({ Component, pageProps }) {
-  const [coinData, setCoinData] = useState();
-  useEffect(() => {
-    // App컴포넌트가 마운트 될 때
-    socket.emit(SOCKET_EVENT.ACCESS_PAGE, { coinData });
-    console.log(coinData);
+  // const [coinData, setCoinData] = useState();
+  // useEffect(() => {
+  //   // App컴포넌트가 마운트 될 때
+  //   socket.emit(SOCKET_EVENT.ACCESS_PAGE, { coinData });
+  //   // console.log(coinData);
 
-    // App컴포넌트가 언마운트 될 때
-    return () => {
-      socket.disconnected();
-    };
-  }, [coinData]);
+  //   // App컴포넌트가 언마운트 될 때
+  //   return () => {
+  //     socket.disconnect();
+  //   };
+  // }, [coinData]);
   return (
-    <SocketContext.Provider value={socket}>
+    <>
       <Head>
         <title>Project VCT</title>
         <link rel="icon" href="/asset/image/vctLogo.png" />
@@ -51,7 +51,7 @@ function MyApp({ Component, pageProps }) {
       <Layout>
         <Component {...pageProps} />
       </Layout>
-    </SocketContext.Provider>
+    </>
   );
 }
 
