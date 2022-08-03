@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { StarIcon } from '@heroicons/react/solid';
+import { TrashIcon } from '@heroicons/react/outline';
 import CoinData from '../pages/api/getData.json';
 import CoinListBox from './common/CoinListBox';
 
@@ -77,6 +78,63 @@ const CoinList = ({ type, isToggle, pageType }) => {
                 </div>
               );
             }
+          })
+      ) : pageType === 'Interests' ? (
+        testList
+          .filter((e) => e.interests === true)
+          .map((v, i) => {
+            return (
+              <div className="flex w-full mt-1 px-4" key={i}>
+                <h3 className="flex p-3 justify-center items-center font-bold">
+                  {i + 1}
+                </h3>
+                <div className="flex w-full justify-between">
+                  <div className="flex">
+                    <div className="flex justify-center items-center ">
+                      <div
+                        className="w-[40px] h-[40px] flex p-3 justify-center items-center rounded-full"
+                        style={{ backgroundColor: v.color }}
+                      >
+                        {v.image}
+                      </div>
+                    </div>
+                    <div className="flex flex-col p-3 justify-center items-left">
+                      <h3 className="font-bold">{v.coinName}</h3>
+                      <h5 className="text-gray-500">
+                        {v.currentPrice.toLocaleString()}원
+                        <span
+                          className={`ml-[3px] ${
+                            v.range > 0 ? 'text-red-600' : 'text-blue-600'
+                          } font-bold`}
+                        >
+                          {v.range > 0 && '+'}
+                          {v.range}%
+                        </span>
+                      </h5>
+                    </div>
+                  </div>
+                  <div
+                    className={`flex items-center text-gray-400 cursor-pointer ${
+                      v.interests && 'text-black'
+                    }  hover:text-red-600 active:opacity-90`}
+                    onClick={() => {
+                      setTsetList(() => {
+                        const newData = {
+                          ...testList,
+                          [i]: {
+                            ...v,
+                            interests: false,
+                          },
+                        };
+                        return Object.values(newData);
+                      });
+                    }}
+                  >
+                    <TrashIcon className="w-[20px] h-[20px]" />
+                  </div>
+                </div>
+              </div>
+            );
           })
       ) : (
         <div className="flex w-full mt-1 px-4">
