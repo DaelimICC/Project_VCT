@@ -7,7 +7,7 @@ import com.daelimicc.server.vct.userinterest.domain.UserInterest;
 public class UserInterestDTO {
 
     private String _id;
-    private String WCU; //백다다가오이
+    private Boolean WCU; //백다다가오이
     private Boolean PTT; //감자
     private Boolean ONI; //양파
     private Boolean CBB; //배추
@@ -19,18 +19,19 @@ public class UserInterestDTO {
     private Boolean TMT; //토마토
 
     public UserInterest toEntity() {
-        return UserInterest.builder()
-                ._id(this._id)
-                .WCU("false")
-                .PTT(this.PTT)
-                .ONI(this.ONI)
-                .CBB(this.CBB)
-                .CORN(this.CORN)
-                .GPP(this.GPP)
-                .GRR(this.GRR)
-                .GONI(this.GONI)
-                .SQS(this.SQS)
-                .TMT(this.TMT)
-                .build();
+        UserInterest userInterest = new UserInterest();
+        userInterest.set_id(_id);
+        userInterest.setWCU(WCU);
+        userInterest.setPTT(PTT);
+        userInterest.setONI(ONI);
+        userInterest.setCBB(CBB);
+        userInterest.setCORN(CORN);
+        userInterest.setGPP(GPP);
+        userInterest.setGRR(GRR);
+        userInterest.setGONI(GONI);
+        userInterest.setSQS(SQS);
+        userInterest.setTMT(TMT);
+
+        return userInterest;
     }
 }

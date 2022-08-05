@@ -6,6 +6,8 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
+
 @Data
 @Document(collection = "vct_user")
 public class User {
@@ -15,6 +17,4 @@ public class User {
     private String email;
     private String createdAt;
     private String updatedAt;
-    private Wallet wallet;
-    private UserInterest userInterest;
 }

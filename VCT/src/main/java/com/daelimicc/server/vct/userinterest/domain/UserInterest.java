@@ -8,15 +8,13 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Document(collection = "vct_user_interest")
 public class UserInterest {
     @Id
     private String _id;
-    @Builder.Default
-    private String WCU = "false"; //백다다가오이
+    private Boolean WCU; //백다다가오이
     private Boolean PTT; //감자
     private Boolean ONI; //양파
     private Boolean CBB; //배추
