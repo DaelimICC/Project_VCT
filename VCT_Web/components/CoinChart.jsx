@@ -25,7 +25,7 @@ function CoinChart(props) {
   const handleBrush = (domain) => {
     setState({ x: domain.x });
   };
-  // console.log(state);
+  console.log(state);
   const data = [
     {
       x: new Date(2022, 7, 22),
@@ -109,7 +109,7 @@ function CoinChart(props) {
     },
   ];
   return (
-    <div>
+    <div className="flex-col">
       <VictoryChart
         scale={{ x: 'time' }}
         domainPadding={{ x: 25 }}

@@ -3,9 +3,15 @@ import { StarIcon } from '@heroicons/react/solid';
 import { TrashIcon } from '@heroicons/react/outline';
 import CoinData from '../pages/api/getData.json';
 import CoinListBox from './common/CoinListBox';
+import { useRecoilState } from 'recoil';
+import { recoilInterests } from '../src/recoil/recoilInterests';
 
 const CoinList = ({ type, isToggle, pageType }) => {
-  const [testList, setTsetList] = useState(CoinData);
+  const [testList, setTestList] = useState(CoinData);
+
+  // const [testList, setTestList] = useRecoilState(recoilInterests);
+  // console.log(CoinData);
+  // console.log(testList);
   const [value, setValue] = useState(CoinData[0]);
   return (
     <>
@@ -60,7 +66,7 @@ const CoinList = ({ type, isToggle, pageType }) => {
                         v.interests && 'text-black'
                       }  hover:opacity-60 active:opacity-90`}
                       onClick={() => {
-                        setTsetList(() => {
+                        setTestList(() => {
                           const newData = {
                             ...testList,
                             [i]: {
@@ -118,7 +124,7 @@ const CoinList = ({ type, isToggle, pageType }) => {
                       v.interests && 'text-black'
                     }  hover:text-red-600 active:opacity-90`}
                     onClick={() => {
-                      setTsetList(() => {
+                      setTestList(() => {
                         const newData = {
                           ...testList,
                           [i]: {
