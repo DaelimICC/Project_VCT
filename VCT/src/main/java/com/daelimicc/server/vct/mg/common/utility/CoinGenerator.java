@@ -49,4 +49,5 @@ public class CoinGenerator {
     public void SetInitPrice() {
 
     }
+
 }
