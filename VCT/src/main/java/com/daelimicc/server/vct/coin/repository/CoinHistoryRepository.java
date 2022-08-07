@@ -11,4 +11,6 @@ public interface CoinHistoryRepository extends MongoRepository<CoinHistory, Stri
     List<CoinHistory> findByCrtDttmLike(String crtDt);
 
     List<CoinHistory> findByCoinNameAndCrtDttmLike(String coinName, String crtDt);
+
+    CoinHistory findTop1ByCoinNameOrderByCrtDttmDesc(String coinName);
 }

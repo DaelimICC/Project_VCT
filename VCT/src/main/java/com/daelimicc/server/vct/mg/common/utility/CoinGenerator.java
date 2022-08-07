@@ -1,5 +1,6 @@
 package com.daelimicc.server.vct.mg.common.utility;
 
+import com.daelimicc.server.vct.coin.domain.CoinHistory;
 import com.daelimicc.server.vct.coin.dto.CoinDTO;
 import com.daelimicc.server.vct.coin.dto.CoinHistoryDTO;
 import com.daelimicc.server.vct.coin.repository.CoinHistoryRepository;
@@ -49,5 +50,4 @@ public class CoinGenerator {
     public void SetInitPrice() {
 
     }
-
 }
