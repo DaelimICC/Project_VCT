@@ -11,6 +11,6 @@ import java.util.List;
 @NoArgsConstructor
 public class RealTimeChart {
     private String coinName;
-    private float currentCoinPrice;
-    private List<Float> preCoinList;
+    private float coinPrice;
+
 }
