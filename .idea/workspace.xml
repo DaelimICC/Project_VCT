@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="02c6d416-bcb6-42d9-b0fa-9bf6c8e6a135" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/VCT/src/main/java/com/daelimicc/server/vct/notice/controller/NoticeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/VCT/src/main/java/com/daelimicc/server/vct/notice/controller/NoticeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/VCT/src/main/java/com/daelimicc/server/vct/notice/repository/NoticeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/VCT/src/main/java/com/daelimicc/server/vct/notice/repository/NoticeRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,6 +52,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
@@ -59,12 +61,12 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/Lee/Documents/Project_VCT2/VCT/src/main",
+    "last_opened_file_path": "E:/Development/Project_VCT",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Modules",
+    "project.structure.last.edited": "SDKs",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
@@ -113,6 +115,8 @@
       <workItem from="1658370875618" duration="5756000" />
       <workItem from="1658377483149" duration="1618000" />
       <workItem from="1658395885224" duration="8257000" />
+      <workItem from="1668784218641" duration="255000" />
+      <workItem from="1668784542317" duration="26000" />
     </task>
     <servers />
   </component>

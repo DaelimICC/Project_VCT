@@ -1,0 +1,49 @@
+version: "3.9"
+services:
+  mongodb:
+    image: mongo
+    restart: always
+    container_name : mongo-server
+    ports:
+      - "16025:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=mongo
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_SERVER_PWD}
+      - MONGO_INITDB_DATABASE=${MONGO_DATABASE_CONN}
+      - TZ=Asia/Seoul
+    logging:
+      options:
+        max-size: "100m"
+        max-file: "3"
+  application:
+    container_name: spring-vct
+    image: openjdk:17-jdk
+    build:
+      context: ./VCTServer
+      dockerfile: ./Dockerfile
+    ports:
+      - "1300:8080"
+    environment:
+      SPRING_DATA_MONGODB_HOST : mongo-server
+      SPRING_DATA_MONGODB_PORT : 16025
+      SPRING_DATA_MONGODB_USERNAME : mongo
+      SPRING_DATA_MONGODB_PASSWORD : ${MONGO_SERVER_PWD}
+      SPRING_DATA_MONGODB_DATABASE : ${MONGO_DATABASE_CONN}
+    depends_on:
+      - mongodb
+#  wsNginx:
+#    image: nginx
+#    container_name: wsNginx
+#    restart: always
+#    ports:
+#      - 80:80
+#      - 443:443
+#    volumes:
+#      - ./nginx/conf.d:/etc/nginx/conf.d
+#      - ./nginx/ssl:/etc/nginx/ssl
+#    environment:
+#      - TZ=Asia/Seoul
+#    depends_on:
+#      - application
+#    links:
+#      - application
