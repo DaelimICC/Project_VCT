@@ -1,7 +1,11 @@
 package com.daelimicc.server.vct.mg.common.handler;
 
 import com.daelimicc.server.vct.coin.domain.Coin;
+import com.daelimicc.server.vct.coin.domain.CoinHistory;
+import com.daelimicc.server.vct.coin.repository.CoinHistoryRepository;
 import com.daelimicc.server.vct.coin.repository.CoinRepository;
+import com.daelimicc.server.vct.mg.chart.domain.RealTimeChart;
+import com.daelimicc.server.vct.mg.chart.repository.RealTimeChartRepository;
 import com.daelimicc.server.vct.status.repository.CoinStatusRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,7 +29,10 @@ import java.util.TimerTask;
 public class WebSocketHandler extends TextWebSocketHandler {
 
     private final CoinRepository coinRepository;
-    private final CoinStatusRepository coinStatusRepository;
+
+    private final CoinHistoryRepository coinHistoryRepository;
+
+    private final RealTimeChartRepository realTimeChartRepository;
 
     public List<Coin> getCoinChartList() {
         return coinRepository.findAll();
@@ -34,6 +41,8 @@ public class WebSocketHandler extends TextWebSocketHandler {
     // Chart Socket (Period 1sec)
     @Override
     public synchronized void afterConnectionEstablished(WebSocketSession session) throws IOException {
+
+        RealTimeChart coinData = (RealTimeChart) realTimeChartRepository.findAll();
 
         Timer timer = new Timer("ChartThreadTimer");
         long delay = 3000L;
@@ -45,11 +54,10 @@ public class WebSocketHandler extends TextWebSocketHandler {
                         log.info("Session is closed");
                         this.cancel();
                     }
-                    session.sendMessage(new TextMessage(getCoinChartList().toString()));
+                    session.sendMessage(new TextMessage(coinData.toString()));
                 } catch (IOException e) {
                     throw new RuntimeException(e);
-                } catch (IllegalStateException e) {
-                    throw new IllegalStateException(e);
+                } catch (IllegalStateException ignored) {
                 }
             }
         };

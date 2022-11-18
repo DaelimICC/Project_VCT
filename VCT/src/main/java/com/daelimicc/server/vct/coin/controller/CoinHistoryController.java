@@ -44,4 +44,9 @@ public class CoinHistoryController {
             return coinHistoryRepository.findByCoinNameAndCrtDttmLike(coinName, crtDt);
         }
     }
+
+    @DeleteMapping("")
+    public void deleteAll() {
+        coinHistoryRepository.deleteAll();
+    }
 }

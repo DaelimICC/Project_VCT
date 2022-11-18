@@ -51,4 +51,9 @@ public class CoinController {
         coin.set_id(coinId);
         coinRepository.save(coin);
     }
+
+    @DeleteMapping("")
+    public void deleteAll() {
+        coinRepository.deleteAll();
+    }
 }
