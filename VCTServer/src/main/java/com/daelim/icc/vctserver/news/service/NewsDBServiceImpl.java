@@ -20,21 +20,6 @@ public class NewsDBServiceImpl implements NewsDBService {
     }
 
     @Override
-    public List<News> getNewsAmount(int amount){
-        int listSize = getAllNews().size();
-
-        if (listSize < amount) throw new ArrayIndexOutOfBoundsException("");
-
-        return getAllNews().stream().limit(amount).toList();
-    }
-
-    @Override
-    public void saveNews(News news){
-        newsRepository.save(news);
-        log.info(news + " 저장완료");
-    }
-
-    @Override
     public void saveAllNews(Iterable<News> newses){
         newsRepository.saveAll(newses);
         log.info("뉴스 리스트 저장 완료");

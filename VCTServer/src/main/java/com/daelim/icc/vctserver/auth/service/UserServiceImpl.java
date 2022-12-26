@@ -18,6 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.PostConstruct;
 import java.util.Optional;
 
 @Service
@@ -29,8 +30,14 @@ public class UserServiceImpl implements UserService {
     private final JwtProvider provider;
     private final PasswordEncoder encoder;
 
-    private AuthenticationManager authenticationManager = authenticationManagerBuilder.getObject();
+    /*private AuthenticationManager authenticationManager;
 
+    @PostConstruct
+    public void postConstruct(){
+        this.authenticationManager = authenticationManagerBuilder.getObject();
+    }*/
+
+    @Override
     public ResponseEntity<String> userRegistration(UserDTO userdto){
         userdto.setUserPwd(encoder.encode(userdto.getUserPwd()));
 
@@ -58,7 +65,7 @@ public class UserServiceImpl implements UserService {
         Authentication authentication;
 
         try{
-            authentication = authenticationManager.authenticate(authenticationToken);
+            authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
         }catch (UsernameNotFoundException exception){
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(exception.toString());
         }
@@ -66,6 +73,7 @@ public class UserServiceImpl implements UserService {
         return ResponseEntity.ok(provider.generateToken(authentication).toString());
     }
 
+    @Override
     public ResponseEntity<String> deleteUser(String userId){
         repository.deleteById(userId);
         try {

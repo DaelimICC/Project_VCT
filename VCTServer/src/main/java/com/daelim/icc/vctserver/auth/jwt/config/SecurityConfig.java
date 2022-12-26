@@ -28,8 +28,8 @@ public class SecurityConfig {
                 .and()
                 .authorizeHttpRequests()
                 .antMatchers("user/registration", "user/signup", "news").permitAll()
-                .antMatchers("user/delete", "user/check", "user/logout" ).hasRole("User")
-                .anyRequest().authenticated()
+                .antMatchers("user/delete", "user/check", "user/logout").hasRole("User")
+                //.anyRequest().authenticated()
                 .and()
                 .addFilterBefore(new JwtAuthenticationFilter(provider), UsernamePasswordAuthenticationFilter.class);
 

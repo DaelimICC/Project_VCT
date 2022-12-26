@@ -8,9 +8,5 @@ import java.util.List;
 public interface NewsDBService {
     List<News> getAllNews();
 
-    List<News> getNewsAmount(int amount);
-
-    void saveNews(News news);
-
     void saveAllNews(Iterable<News> newses);
 }

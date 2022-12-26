@@ -16,6 +16,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Data
 @Component
@@ -23,27 +24,32 @@ public class NewsCrawler {
     @Value("${spring.jsoup.url}")
     private String siteDomain;
 
-    @Value("${spring.jsoup.url}" + "${spring.news.url}")
+    @Value("${spring.jsoup.url}" + "${spring.jsoup.news.url}")
     private String newsUrl;
+
+    @Value("${spring.jsoup.url}" + "${spring.jsoup.thumbnail.url}")
+    private String thumbnailUrl;
     private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
     public List<News> crawl() throws IOException {
-        List<Element> newsCards = Jsoup.connect(newsUrl)
-                .get().select("div[class=\"card_frame\"]")
-                .stream().limit(5).toList();
+        Stream<Element> newsCards = Jsoup.connect(newsUrl)
+                .get().select("ul[class=\"common_list\"] a")
+                .stream().limit(5);
 
-        return newsCards.stream().map(this::makeNewsEntity).toList();
+        return newsCards.map(this::makeNewsEntity).toList();
     }
     private News makeNewsEntity(Element newsCard){
         String title,link, thumbnail;
         Date dttm;
 
         link = newsCard.select("a").attr("href");
-        thumbnail = newsCard.select("img").attr("src");
-        title = newsCard.select("span[class=\"txt\"]").text();
+        thumbnail = newsCard.select("div[class=\"img_wrap thumbnail_img\"]").attr("style")
+                .replace("background-image:url(" + thumbnailUrl, "")
+                .replace(")", "");
+        title = newsCard.select("pre[class=\"tit\"]").text();
 
         try {
-            dttm = dateFormat.parse(newsCard.select("span[class=\"date\"]").text());
+            dttm = dateFormat.parse(newsCard.select("pre[class=\"data\"]").text());
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
@@ -52,7 +58,7 @@ public class NewsCrawler {
                 .newsId(UUID.randomUUID().toString())
                 .newsTitle(title)
                 .newsLink(siteDomain + link)
-                .newsThumb(siteDomain + thumbnail)
+                .newsThumb(thumbnailUrl + thumbnail)
                 .newsDttm(dttm)
                 .build();
     }
