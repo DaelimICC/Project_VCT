@@ -59,7 +59,7 @@ public class NewsCrawler {
                 .newsTitle(title)
                 .newsLink(siteDomain + link)
                 .newsThumb(thumbnailUrl + thumbnail)
-                .newsDttm(dttm)
+                .newsDt(dttm)
                 .build();
     }
 }

@@ -16,5 +16,5 @@ public class News {
     private String newsTitle;
     private String newsLink;
     private String newsThumb;
-    private Date newsDttm;
+    private Date newsDt;
 }
