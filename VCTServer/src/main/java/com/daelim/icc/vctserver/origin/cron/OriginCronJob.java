@@ -33,26 +33,27 @@ public class OriginCronJob {
 
     @GetMapping("")
     public String updatePrice() {
-        RestTemplate restTemplate = new RestTemplate();
-
-        HttpHeaders header = new HttpHeaders();
-        header.setContentType(MediaType.TEXT_XML);
-
-        HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(header);
-
-
-        String uri = api_url + "?" + "dataid=" + api_data
-                                   + "&pagesize=1&pageidx=1&portal.templet=false"
-                                   + "&id=" + api_id + "&passwd=" + api_pwd
-                                   + "&p_ymd=" + "20221117" // 검색 일자
-                                   + "&p_jymd=" + "20221116" // 전일 일자
-                                   + "&p_jjymd=" + "20211116"
-                                   + "&d_cd=" + api_div
-                                   + "&p_pos_gubun=" + api_pos
-                                   + "&pum_nm=" + "백다다기오이"; // 검색 작물
-
-        ResponseDTO response = restTemplate.getForObject(uri, ResponseDTO.class);
-
-        return response.toString();
+        return api_url;
+//        RestTemplate restTemplate = new RestTemplate();
+//
+//        HttpHeaders header = new HttpHeaders();
+//        header.setContentType(MediaType.TEXT_XML);
+//
+//        HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(header);
+//
+//
+//        String uri = api_url + "?" + "dataid=" + api_data
+//                                   + "&pagesize=1&pageidx=1&portal.templet=false"
+//                                   + "&id=" + api_id + "&passwd=" + api_pwd
+//                                   + "&p_ymd=" + "20221117" // 검색 일자
+//                                   + "&p_jymd=" + "20221116" // 전일 일자
+//                                   + "&p_jjymd=" + "20211116"
+//                                   + "&d_cd=" + api_div
+//                                   + "&p_pos_gubun=" + api_pos
+//                                   + "&pum_nm=" + "백다다기오이"; // 검색 작물
+//
+//        ResponseDTO response = restTemplate.getForObject(uri, ResponseDTO.class);
+//
+//        return response.toString();
     }
 }
