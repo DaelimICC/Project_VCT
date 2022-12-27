@@ -21,7 +21,7 @@ public class User implements UserDetails {
     @Id
     private String userId;
     private String userPwd;
-    private String userName;
+    private String userNickName;
     private Float userPoint;
     private HashMap<CoinList, Integer> userWallet;
 

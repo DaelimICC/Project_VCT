@@ -2,15 +2,17 @@ package com.daelim.icc.vctserver.auth.dto;
 
 import com.daelim.icc.vctserver.auth.dao.User;
 import com.daelim.icc.vctserver.constdata.CoinList;
-import lombok.Data;
+import lombok.*;
 
 import java.util.Arrays;
 import java.util.HashMap;
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserDTO {
     private String userId;
     private String userPwd;
-    private String userName;
+    private String userNickName;
 
     private HashMap<CoinList, Integer> createNewWallet() {
         HashMap<CoinList, Integer> wallet = new HashMap<>();
@@ -24,7 +26,7 @@ public class UserDTO {
         User user = User.builder()
                 .userId(this.userId)
                 .userPwd(this.userPwd)
-                .userName(this.userName)
+                .userNickName(this.userNickName)
                 .userPoint(0.0F)
                 .userWallet(createNewWallet())
                 .build();
