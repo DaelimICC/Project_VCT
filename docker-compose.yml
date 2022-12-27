@@ -1,5 +1,17 @@
 version: "3.9"
 services:
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: rabbitmq-stream
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_ERLANG_COOKIE: "VCT_RABBIT_COOKIE"
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_ADMIN_NAME}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_ADMIN_PASSWORD}
+    depends_on:
+      - application
   mongodb:
     image: mongo
     restart: always
