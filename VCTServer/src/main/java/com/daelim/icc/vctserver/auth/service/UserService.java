@@ -9,11 +9,11 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public interface UserService {
     @Transactional
-    ResponseEntity<String> userRegistration(UserDTO userdto) throws JsonProcessingException;
+    ResponseEntity<String> registration(UserDTO userdto);
 
     @Transactional
-    ResponseEntity<String> login(String userId, String userPwd);
+    ResponseEntity<String> signup(String userId, String userPwd);
 
     @Transactional
-    ResponseEntity<String> deleteUser(String userId);
+    ResponseEntity<String> delete(String userId);
 }

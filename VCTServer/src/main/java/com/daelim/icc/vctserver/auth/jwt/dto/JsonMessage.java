@@ -1,4 +1,4 @@
-package com.daelim.icc.vctserver.constdata;
+package com.daelim.icc.vctserver.auth.jwt.dto;
 
 import lombok.*;
 

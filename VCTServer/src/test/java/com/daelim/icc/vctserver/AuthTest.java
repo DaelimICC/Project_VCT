@@ -1,102 +1,106 @@
 package com.daelim.icc.vctserver;
 
-import com.daelim.icc.vctserver.auth.controller.UserController;
 import com.daelim.icc.vctserver.auth.dto.UserDTO;
-import com.daelim.icc.vctserver.news.controller.NewsController;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import kotlin.Pair;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.jupiter.api.extension.RegisterExtension;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.mongo.embedded.EmbeddedMongoAutoConfiguration;
-import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
-import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Import;
+import com.daelim.icc.vctserver.auth.jwt.dto.TokenDTO;
+import org.junit.jupiter.api.*;
 import org.springframework.http.MediaType;
-import org.springframework.restdocs.RestDocumentationContextProvider;
-import org.springframework.restdocs.RestDocumentationExtension;
-import org.springframework.test.context.DynamicPropertyRegistry;
-import org.springframework.test.context.DynamicPropertySource;
-import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.event.annotation.AfterTestExecution;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
-import org.testcontainers.containers.MongoDBContainer;
-import org.testcontainers.junit.jupiter.Container;
-import org.testcontainers.junit.jupiter.Testcontainers;
 
-import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
-import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
-import static org.springframework.restdocs.operation.preprocess.Preprocessors.*;
+import java.util.Base64;
+
+import static com.daelim.icc.vctserver.config.RestDocsConfig.field;
+import static org.springframework.restdocs.headers.HeaderDocumentation.headerWithName;
+import static org.springframework.restdocs.headers.HeaderDocumentation.requestHeaders;
+import static org.springframework.restdocs.payload.PayloadDocumentation.*;
+import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
+import static org.springframework.restdocs.request.RequestDocumentation.requestParameters;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@TestPropertySource(locations = "/test.properties")
-@ExtendWith(RestDocumentationExtension.class)
-@Import({ObjectMapper.class})
-@AutoConfigureRestDocs
-@WebAppConfiguration
-@Testcontainers
-@SpringBootTest
-public class AuthTest {
-    @Container
-    private static final MongoDBContainer mongo = new MongoDBContainer("mongo");
-
-    @Autowired
-    private ObjectMapper objectMapper;
-
-//    @RegisterExtension
-//    final RestDocumentationExtension restDocumentation = new RestDocumentationExtension ("custom");
-
-    private MockMvc mockMvc;
-
-    @DynamicPropertySource
-    static void setProperty(DynamicPropertyRegistry registry){
-        registry.add("spring.data.mongodb.uri", mongo::getReplicaSetUrl);
-    }
-
-    @BeforeEach
-    void setUp(WebApplicationContext webApplicationContext, RestDocumentationContextProvider restDocumentation) {
-        this.mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext)
-                .apply(documentationConfiguration(restDocumentation))
-                .alwaysDo(document("{method-name}",
-                                preprocessRequest(prettyPrint()),
-                                preprocessResponse(prettyPrint())
-                        )
-                )
-                .build();
-
-        mongo.start();
-    }
-
-
-
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+public class AuthTest extends BasicTestClass{
 
     @Test
-    public void generateUser() throws Exception {
+    @Order(1)
+    public void registrationUser() throws Exception {
         UserDTO userDTO = new UserDTO("testId", "testPwd", "Test1");
 
-        mockMvc.perform(post("/user/registration")
+        mockMvc.perform(
+                post("/user/registration")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(userDTO))
                         .accept(MediaType.APPLICATION_JSON)
+                        .content(createJson(userDTO))
                 )
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("msg").value("Test1 USER CREATED"));
+                .andExpect(jsonPath("msg").value("Test1 USER CREATED"))
+                .andDo(restDocs.document(
+                            requestFields(
+                                    fieldWithPath("userId").description("유저 ID"),
+                                    fieldWithPath("userPwd").description("유저 비밀번호"),
+                                    fieldWithPath("userNickName").description("유저 닉네임")
+                            ),
+                            responseFields(
+                                    fieldWithPath("msg").description("처리 결과")
+                                            .attributes(field("success", "[CREATED] (user.nickname) USER CREATED"))
+                                            .attributes(field("fail", "[FORBIDDEN] DUPLICATE USER \n " +
+                                                    "[INTERNAL_SERVER_ERROR] EXCEPTION MESSAGE"))
+                            )
+                        )
+                );
     }
 
-    
     @Test
-    public void printPare(){
+    @Order(2)
+    public void signupUser() throws Exception {
+        addParam("id", "testId");
+        addParam("pwd", "testPwd");
+
+        mockMvc.perform(
+                post("/user/signup")
+                        .contentType(MediaType.MULTIPART_FORM_DATA)
+                        .accept("*/*")
+                        .params(params)
+
+                )
+                .andExpect(status().isOk())
+                .andDo(restDocs.document(
+                        requestParameters(
+                                parameterWithName("id").description("로그인할 계정의 ID"),
+                                parameterWithName("pwd").description("로그인할 계정의 비밀번호")
+                        ),
+                        responseFields(
+                                fieldWithPath("msg").description("처리 결과 반환")
+                                        .attributes(field("success", "[OK] " + TokenDTO.getFormat()))
+                                        .attributes(field("fail", "[UNAUTHORIZED] EXCEPTION MESSAGE"))
+                        )
+                ));
+
+    }
+
+    @Test
+    @Order(3)
+    public void deleteUser() throws Exception {
+        String param = Base64.getEncoder().encodeToString("testId".getBytes());
+
+        mockMvc.perform(
+                delete("/user/delete")
+                        .contentType(MediaType.MULTIPART_FORM_DATA)
+                        .accept("*/*")
+                        .header("targetId", param)
+                )
+                .andExpect(status().isOk())
+                .andDo(restDocs.document(
+                        requestHeaders(
+                                headerWithName("targetId").attributes(field("etc", "Base64Encode"))
+                                        .description("삭제할 사용자 ID")
+
+                        ),
+                        responseFields(
+                                fieldWithPath("msg").description("처리 결과 반환")
+                                        .attributes(field("success", "[OK] DELETE USER"))
+                                        .attributes(field("fail", "[INTERNAL_SERVER_ERROR] EXCEPTION MESSAGE"))
+
+                        )
+                ));
     }
 }

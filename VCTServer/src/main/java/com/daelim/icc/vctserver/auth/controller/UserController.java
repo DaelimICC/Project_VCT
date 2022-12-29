@@ -17,19 +17,19 @@ public class UserController {
     private final UserService service;
 
     @PostMapping("registration")
-    public ResponseEntity<String> registration(@RequestBody @NotNull UserDTO userDTO) throws JsonProcessingException {
-        return service.userRegistration(userDTO);
+    public ResponseEntity<String> registration(@RequestBody @NotNull UserDTO userDTO){
+        return service.registration(userDTO);
     }
 
     @PostMapping("signup")
     public ResponseEntity<String> signup(@RequestParam(value = "id") String userId,
-                                         @RequestParam(value = "password") String userPwd){
-        return service.login(userId, userPwd);
+                                         @RequestParam(value = "pwd") String userPwd){
+        return service.signup(userId, userPwd);
     }
 
     @DeleteMapping("delete")
-    public ResponseEntity<String> delete(@RequestParam(value = "id") String userId){
-        return service.deleteUser(userId);
+    public ResponseEntity<String> delete(@RequestHeader(value = "targetId") String userId){
+        return service.delete(userId);
     }
 }
 

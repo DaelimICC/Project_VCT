@@ -1,0 +1,26 @@
+= Project_VCT
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 2
+:sectlinks:
+
+
+[[registrationUser]]
+== 사용자 생성
+[POST] /user/registration
+
+operation::AuthTest/registrationUser[snippets='http-request,http-response,request-fields,response-fields']
+
+[[signup]]
+== 사용자 인증
+[POST] /user/signup
+
+operation::AuthTest/signupUser[snippets='http-request,http-response,request-parameters,response-fields']
+
+[[delete]]
+== 사용자 제거
+[DELETE] /user/delete
+
+operation::AuthTest/deleteUser[snippets='http-request,http-response,request-headers,response-fields']
