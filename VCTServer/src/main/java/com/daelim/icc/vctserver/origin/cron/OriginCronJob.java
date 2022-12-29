@@ -1,6 +1,6 @@
 package com.daelim.icc.vctserver.origin.cron;
 
-import com.daelim.icc.vctserver.origin.dto.ResponseDTO;
+import org.apache.http.client.methods.HttpHead;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.util.MultiValueMap;
@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import java.net.URI;
 import java.util.Objects;
 
 @RestController()
@@ -35,10 +36,10 @@ public class OriginCronJob {
     public String updatePrice() {
         RestTemplate restTemplate = new RestTemplate();
 
-        HttpHeaders header = new HttpHeaders();
-        header.setContentType(MediaType.TEXT_XML);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
 
-        HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(header);
+        HttpEntity<HttpHeaders> entity = new HttpEntity<>(headers);
 
 
         String uri = api_url + "?" + "dataid=" + api_data
@@ -51,7 +52,8 @@ public class OriginCronJob {
                                    + "&p_pos_gubun=" + api_pos
                                    + "&pum_nm=" + "백다다기오이"; // 검색 작물
 
-        ResponseDTO response = restTemplate.getForObject(uri, ResponseDTO.class);
+        ResponseEntity<String> response = restTemplate.exchange(URI.create(uri), HttpMethod.GET, entity, String.class);
+
 
         return response.toString();
     }

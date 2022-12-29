@@ -1,0 +1,47 @@
+<lists>
+    <list_total_count>4</list_total_count>
+    <list>
+        <PUM_NM_A>
+            <![CDATA[ 백다다기오이 ]]>
+        </PUM_NM_A>
+        <PUM_CD>
+            <![CDATA[ 22302 ]]>
+        </PUM_CD>
+        <G_NAME_A>
+            <![CDATA[ 특 ]]>
+        </G_NAME_A>
+        <UNIT_QTY>
+            <![CDATA[ 100 ]]>
+        </UNIT_QTY>
+        <U_NAME>
+            <![CDATA[ 100개 ]]>
+        </U_NAME>
+        <AV_P_A>
+            <![CDATA[ 54733 ]]>
+        </AV_P_A>
+        <PAV_P_A>
+            <![CDATA[ 53509 ]]>
+        </PAV_P_A>
+        <PAV_PY_A>
+            <![CDATA[ 111190 ]]>
+        </PAV_PY_A>
+        <A_B>
+            <![CDATA[ 102.287465659982432861761572819525687268 ]]>
+        </A_B>
+        <A_C>
+            <![CDATA[ 49.2247504271966903498516053601942620739 ]]>
+        </A_C>
+        <E_NAME>
+            <![CDATA[ 특 ]]>
+        </E_NAME>
+        <F_NAME>
+            <![CDATA[ 개 ]]>
+        </F_NAME>
+        <GRADE_CD>
+            <![CDATA[ 0 ]]>
+        </GRADE_CD>
+        <UNIT_CD>
+            <![CDATA[ 68 ]]>
+        </UNIT_CD>
+    </list>
+</lists>
