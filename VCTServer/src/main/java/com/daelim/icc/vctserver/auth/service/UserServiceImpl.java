@@ -5,6 +5,7 @@ import com.daelim.icc.vctserver.auth.dto.UserDTO;
 import com.daelim.icc.vctserver.auth.jwt.provider.JwtProvider;
 import com.daelim.icc.vctserver.auth.repository.UserRepository;
 import com.daelim.icc.vctserver.auth.jwt.dto.JsonMessage;
+import com.daelim.icc.vctserver.constdata.ObjectMapping;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -27,15 +28,12 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends ObjectMapping implements UserService {
     private final UserRepository repository;
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
     private AuthenticationManager authenticationManager;
     private final JwtProvider provider;
     private final PasswordEncoder encoder;
-    private final ObjectMapper objectMapper;
-    private HttpStatus httpStatus;
-    private String msg;
     private Base64.Decoder decoder;
 
     @EventListener(ApplicationReadyEvent.class)
@@ -89,7 +87,8 @@ public class UserServiceImpl implements UserService {
             authentication = authenticationManager.authenticate(authenticationToken);
 
             httpStatus = HttpStatus.OK;
-            msg = provider.generateToken(authentication).toString();
+            msg = provider.generateToken(authentication);
+            System.out.println("msg = " + msg);
         }catch (Exception exception){
             httpStatus=HttpStatus.UNAUTHORIZED;
             msg = exception.toString();
@@ -116,15 +115,6 @@ public class UserServiceImpl implements UserService {
 
     private String getDecoding(String target){
         return new String(decoder.decode(target));
-    }
-
-    private ResponseEntity<String> makeResponse(){
-        try{
-            return ResponseEntity.status(httpStatus).body(objectMapper.writeValueAsString(new JsonMessage(msg)));
-        }catch (JsonProcessingException exception){
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(exception.getMessage());
-        }
     }
 }
 

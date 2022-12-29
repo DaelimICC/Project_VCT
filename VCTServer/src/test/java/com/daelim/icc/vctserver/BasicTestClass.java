@@ -3,8 +3,7 @@ package com.daelim.icc.vctserver;
 import com.daelim.icc.vctserver.config.RestDocsConfig;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
@@ -37,25 +36,26 @@ import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.docu
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 @Disabled
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @ExtendWith(RestDocumentationExtension.class)
 @Import({ObjectMapper.class, RestDocsConfig.class})
 @WebAppConfiguration
 @Testcontainers
 @SpringBootTest
 public abstract class BasicTestClass {
-    @Container
-    static final MongoDBContainer mongo = new MongoDBContainer("mongo")
-            .withReuse(true);
 
-    static {
+    private static final MongoDBContainer mongo;
+
+    static{
+        mongo = new MongoDBContainer("mongo").withReuse(true);
         mongo.start();
     }
+
+
     @Autowired
     ObjectMapper objectMapper;
 
     MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
-
-    final RestDocumentationExtension restDocumentation = new RestDocumentationExtension ("custom");
 
     @Autowired
     RestDocumentationResultHandler restDocs;

@@ -1,7 +1,6 @@
 package com.daelim.icc.vctserver;
 
 import com.daelim.icc.vctserver.auth.dto.UserDTO;
-import com.daelim.icc.vctserver.auth.jwt.dto.TokenDTO;
 import org.junit.jupiter.api.*;
 import org.springframework.http.MediaType;
 
@@ -17,7 +16,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class AuthTest extends BasicTestClass{
 
     @Test
@@ -70,8 +68,13 @@ public class AuthTest extends BasicTestClass{
                         ),
                         responseFields(
                                 fieldWithPath("msg").description("처리 결과 반환")
-                                        .attributes(field("success", "[OK] " + TokenDTO.getFormat()))
-                                        .attributes(field("fail", "[UNAUTHORIZED] EXCEPTION MESSAGE"))
+                                        .attributes(field("success", "[OK]"))
+                                        .attributes(field("fail", "[UNAUTHORIZED] EXCEPTION MESSAGE")),
+                                fieldWithPath("msg.type").description("토큰 타입")
+                                        .attributes(field("success", "Bearer")),
+
+                                fieldWithPath("msg.access").description("엑세스 토큰"),
+                                fieldWithPath("msg.refresh").description("리프레쉬 토큰")
                         )
                 ));
 

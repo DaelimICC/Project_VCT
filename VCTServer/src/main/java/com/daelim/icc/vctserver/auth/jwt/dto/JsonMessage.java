@@ -7,5 +7,5 @@ import lombok.*;
 @ToString
 @AllArgsConstructor
 public class JsonMessage{
-    private String msg;
+    private Object msg;
 }

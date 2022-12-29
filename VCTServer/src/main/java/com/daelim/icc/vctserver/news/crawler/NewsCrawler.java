@@ -12,6 +12,8 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -29,7 +31,7 @@ public class NewsCrawler {
 
     @Value("${spring.jsoup.url}" + "${spring.jsoup.thumbnail.url}")
     private String thumbnailUrl;
-    private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+
 
     public List<News> crawl() throws IOException {
         Stream<Element> newsCards = Jsoup.connect(newsUrl)
@@ -39,27 +41,21 @@ public class NewsCrawler {
         return newsCards.map(this::makeNewsEntity).toList();
     }
     private News makeNewsEntity(Element newsCard){
-        String title,link, thumbnail;
-        Date dttm;
+        String title,link, thumbnail, dttm;
 
         link = newsCard.select("a").attr("href");
         thumbnail = newsCard.select("div[class=\"img_wrap thumbnail_img\"]").attr("style")
                 .replace("background-image:url(" + thumbnailUrl, "")
                 .replace(")", "");
         title = newsCard.select("pre[class=\"tit\"]").text();
-
-        try {
-            dttm = dateFormat.parse(newsCard.select("pre[class=\"data\"]").text());
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
+        dttm = newsCard.select("pre[class=\"data\"]").text();
 
         return News.builder()
-                .newsId(UUID.randomUUID().toString())
-                .newsTitle(title)
-                .newsLink(siteDomain + link)
-                .newsThumb(thumbnailUrl + thumbnail)
-                .newsDt(dttm)
+                .id(UUID.randomUUID().toString())
+                .title(title)
+                .link(siteDomain + link)
+                .thumb(thumbnailUrl + thumbnail)
+                .dttm(dttm)
                 .build();
     }
 }

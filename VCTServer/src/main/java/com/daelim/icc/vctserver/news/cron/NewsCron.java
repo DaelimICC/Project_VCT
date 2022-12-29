@@ -13,12 +13,11 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class NewsCron {
     private final NewsDBService service;
-    private final NewsCrawler crawler;
 
     @Scheduled(cron = "0 0 */12 * * *")
     public void cron(){
         try{
-            service.saveAllNews(crawler.crawl());
+            service.updateNews();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

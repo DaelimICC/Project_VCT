@@ -59,7 +59,6 @@ dependencies {
     testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
 
 
-
 	testImplementation 'org.junit.jupiter:junit-jupiter:5.9.0'
 	testImplementation 'org.testcontainers:testcontainers:1.17.4'
 	testImplementation 'org.testcontainers:mongodb:1.17.4'
@@ -85,7 +84,6 @@ asciidoctor.doFirst{
 }
 
 tasks.named('test') {
-    delete file(snippetsDir)
     outputs.dir snippetsDir
 	useJUnitPlatform()
 }
