@@ -1,0 +1,5 @@
+[[registrationUser]]
+=== 사용자 생성
+[POST] /user/registration
+
+operation::AuthTest/registrationUser[snippets='http-request,http-response,request-fields,response-fields']

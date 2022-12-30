@@ -1,0 +1,5 @@
+[[signup]]
+=== 사용자 인증
+[POST] /user/signup
+
+operation::AuthTest/signupUser[snippets='http-request,http-response,request-parameters,response-fields']

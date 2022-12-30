@@ -1,0 +1,5 @@
+[[getNews]]
+=== 뉴스 리스트 받기
+[GET] /news
+
+operation::NewsTest/getNews[snippets='http-request']

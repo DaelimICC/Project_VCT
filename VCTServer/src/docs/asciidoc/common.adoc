@@ -1,0 +1,4 @@
+[[common]]
+=== 공통 응답
+
+operation::NewsTest/getNews[snippets='http-response,response-fields']

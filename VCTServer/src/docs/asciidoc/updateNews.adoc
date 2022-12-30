@@ -1,0 +1,7 @@
+[[updateNews]]
+=== 뉴스 리스트 갱신
+[GET] /news/update
+
+매일 0, 12시 마다 크론잡 실행
+
+operation::NewsTest/updateNews[snippets='http-request']

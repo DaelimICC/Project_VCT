@@ -7,41 +7,11 @@
 :sectlinks:
 
 == 사용자
-
-[[registrationUser]]
-=== 사용자 생성
-[POST] /user/registration
-
-operation::AuthTest/registrationUser[snippets='http-request,http-response,request-fields,response-fields']
-
-[[signup]]
-=== 사용자 인증
-[POST] /user/signup
-
-operation::AuthTest/signupUser[snippets='http-request,http-response,request-parameters,response-fields']
-
-[[delete]]
-=== 사용자 제거
-[DELETE] /user/delete
-
-operation::AuthTest/deleteUser[snippets='http-request,http-response,request-headers,response-fields']
+include::registrationUser.adoc[]
+include::signup.adoc[]
+include::delete.adoc[]
 
 == 뉴스 크롤링
-
-[[getNews]]
-=== 뉴스 리스트 받기
-[GET] /news
-
-operation::NewsTest/getNews[snippets='http-request']
-
-[[updateNews]]
-=== 뉴스 리스트 갱신
-[GET] /news/update
-
-매일 0, 12시 마다 크론잡 실행
-
-operation::NewsTest/updateNews[snippets='http-request']
-
-=== 공통 응답
-
-operation::NewsTest/getNews[snippets='http-response,response-fields']
+include::getNews.adoc[]
+include::updateNews.adoc[]
+include::common.adoc[]

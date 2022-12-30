@@ -1,0 +1,5 @@
+[[delete]]
+=== 사용자 제거
+[DELETE] /user/delete
+
+operation::AuthTest/deleteUser[snippets='http-request,http-response,request-headers,response-fields']
