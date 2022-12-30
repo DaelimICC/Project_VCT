@@ -1,5 +1,6 @@
 package com.daelim.icc.vctserver.origin.cron;
 
+import com.daelim.icc.vctserver.constdata.CoinList;
 import com.daelim.icc.vctserver.origin.response.VegetableList;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpHead;
@@ -8,6 +9,7 @@ import org.apache.http.impl.client.LaxRedirectStrategy;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -73,10 +75,8 @@ public class OriginCronJob {
         params.add("p_pos_gubun", api_pos);
     }
 
-
-    @GetMapping("")
-    public String updatePrice() throws JAXBException {
-        params.add("pum_nm", "사과");
+    private String updatePrice(String vegName) throws JAXBException {
+        params.add("pum_nm", vegName);
 
         UriComponents uri = UriComponentsBuilder.fromHttpUrl(api_url).queryParams(params)
                 .build();
@@ -88,5 +88,12 @@ public class OriginCronJob {
 
         VegetableList list = (VegetableList)unmarshaller.unmarshal(new StringReader(response.getBody()));
         return list.toString();
+    }
+
+    @Scheduled(cron = "0 0 */12 * * *")
+    public void cronUpdateOriginDate() throws JAXBException {
+        for(CoinList coin : CoinList.values()) {
+            updatePrice(coin.getName());
+        }
     }
 }
