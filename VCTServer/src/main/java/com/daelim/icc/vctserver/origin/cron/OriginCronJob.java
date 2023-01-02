@@ -76,9 +76,9 @@ public class OriginCronJob {
     }
 
     private String updatePrice(String vegName) throws JAXBException {
-        params.add("pum_nm", vegName);
-
-        UriComponents uri = UriComponentsBuilder.fromHttpUrl(api_url).queryParams(params)
+        UriComponents uri = UriComponentsBuilder.fromHttpUrl(api_url)
+                .queryParams(params)
+                .queryParam("pum_nm", vegName)
                 .build();
 
         ResponseEntity<String> response = restTemplate.getForEntity(uri.toUri(), String.class);
@@ -91,6 +91,7 @@ public class OriginCronJob {
     }
 
     @Scheduled(cron = "0 0 */12 * * *")
+    @GetMapping("")
     public void cronUpdateOriginDate() throws JAXBException {
         for(CoinList coin : CoinList.values()) {
             updatePrice(coin.getName());
