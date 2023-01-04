@@ -22,6 +22,13 @@ public class UserDTO {
         return wallet;
     }
 
+    private HashMap<CoinList, Boolean> createUserFavorite() {
+        HashMap<CoinList, Boolean> favorite = new HashMap<>();
+        Arrays.stream(CoinList.values()).forEach(coin -> favorite.put(coin, false));
+
+        return favorite;
+    }
+
     public User initUserRegistration() {
         User user = User.builder()
                 .userId(this.userId)
@@ -29,6 +36,7 @@ public class UserDTO {
                 .userNickName(this.userNickName)
                 .userPoint(0.0F)
                 .userWallet(createNewWallet())
+                .userFavorite(createUserFavorite())
                 .build();
 
         return user;

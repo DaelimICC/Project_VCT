@@ -24,6 +24,7 @@ public class User implements UserDetails {
     private String userNickName;
     private Float userPoint;
     private HashMap<CoinList, Integer> userWallet;
+    private HashMap<CoinList, Boolean> userFavorite;
 
     @Builder.Default
     private List<String> roles = new ArrayList<>();
