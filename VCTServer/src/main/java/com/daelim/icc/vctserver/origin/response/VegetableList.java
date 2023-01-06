@@ -12,9 +12,10 @@ import java.util.List;
 @XmlRootElement(name="lists")
 @Data
 public class VegetableList {
-    @XmlElement(name="list_total_count")
-    public int totalCount;
-
     @XmlElement(name = "list")
     public List<Vegetable> list;
+
+    public Vegetable getVegetable(){
+        return list.get(0);
+    }
 }
