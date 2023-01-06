@@ -12,7 +12,7 @@ public interface UserService {
     ResponseEntity<String> registration(UserDTO userdto);
 
     @Transactional
-    ResponseEntity<String> signup(String userId, String userPwd);
+    ResponseEntity<String> signIn(String userId, String userPwd);
 
     @Transactional
     ResponseEntity<String> delete(String userId);

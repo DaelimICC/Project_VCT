@@ -76,10 +76,7 @@ public class UserServiceImpl extends ObjectMapping implements UserService {
     }
 
     @Override
-    public ResponseEntity<String> signup(String userId, String userPwd){
-        System.out.println("userId = " + userId);
-        System.out.println("userPwd = " + userPwd);
-
+    public ResponseEntity<String> signIn(String userId, String userPwd){
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userId, userPwd);
         Authentication authentication;
 

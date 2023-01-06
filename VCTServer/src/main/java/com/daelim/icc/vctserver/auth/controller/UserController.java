@@ -21,10 +21,10 @@ public class UserController {
         return service.registration(userDTO);
     }
 
-    @PostMapping("signup")
-    public ResponseEntity<String> signup(@RequestParam(value = "id") String userId,
+    @PostMapping("signin")
+    public ResponseEntity<String> signIn(@RequestParam(value = "id") String userId,
                                          @RequestParam(value = "pwd") String userPwd){
-        return service.signup(userId, userPwd);
+        return service.signIn(userId, userPwd);
     }
 
     @DeleteMapping("delete")
