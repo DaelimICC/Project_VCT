@@ -1,7 +1,6 @@
 package com.daelim.icc.vctserver;
 
 import org.junit.jupiter.api.*;
-import org.springframework.restdocs.snippet.Attributes;
 
 import static com.daelim.icc.vctserver.config.RestDocsConfig.field;
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;

@@ -49,12 +49,12 @@ public class AuthTest extends BasicTestClass{
 
     @Test
     @Order(2)
-    public void signupUser() throws Exception {
+    public void signInUser() throws Exception {
         addParam("id", "testId");
         addParam("pwd", "testPwd");
 
         mockMvc.perform(
-                post("/user/signup")
+                post("/user/signin")
                         .contentType(MediaType.MULTIPART_FORM_DATA)
                         .accept("*/*")
                         .params(params)
